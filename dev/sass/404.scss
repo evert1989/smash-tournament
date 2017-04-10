@@ -1,0 +1,30 @@
+$white: #fff;
+$black: #000;
+
+html,
+body {
+  background: $black;
+  margin: 0;
+  padding: 0;
+
+  h1 {
+    color: $white;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    font-size: 80px;
+    left: 50%;
+    letter-spacing: 0.2em;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &::after {
+      content: '404';
+    }
+
+    &:hover {
+      &::after {
+        content: '424';
+      }
+    }
+  }
+}
