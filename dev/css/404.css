@@ -1,0 +1,21 @@
+html,
+body {
+  background: #000;
+  margin: 0;
+  padding: 0; }
+  html h1,
+  body h1 {
+    color: #fff;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    font-size: 80px;
+    left: 50%;
+    letter-spacing: 0.2em;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%); }
+    html h1::after,
+    body h1::after {
+      content: '404'; }
+    html h1:hover::after,
+    body h1:hover::after {
+      content: '424'; }
