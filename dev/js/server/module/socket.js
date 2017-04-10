@@ -29,5 +29,13 @@ module.exports = {
 			}
 
 		}
+	},
+
+	player: {
+
+		joinGame: function(obj){
+			console.log('socket -> joinGame', obj);
+			global.io.emit('application-' + obj.code + ':join', obj);
+		}
 	}
 };

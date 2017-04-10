@@ -15,7 +15,7 @@ global.port = 4240;
 // ------------------
 const app = express();
 const server = http.Server(app);
-const io = require('socket.io')(server);
+global.io = require('socket.io')(server);
 
 
 // Modules
@@ -31,12 +31,12 @@ app.use('/', router);
 
 // Socket.io
 // ---------
-io.on('connection', function(socket){
-
-	console.log('SOCKET - application connected.');
+global.io.on('connection', function(socket){
 
 	socket.on('app:request', sockets.application.onRequest);
 	socket.on('disconnect', sockets.application.disconnected);
+
+	socket.on('player:join', sockets.player.joinGame);
 });
 
 

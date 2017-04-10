@@ -1,3 +1,5 @@
+'use strict';
+
 require.config({
 
 	baseUrl: 'js/app',
@@ -20,6 +22,6 @@ require.config({
 });
 
 require(['app'], function (App) {
-	var app = new App();
+	let app = new App();
 	app.start();
 });

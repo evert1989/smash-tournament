@@ -26,6 +26,9 @@ module.exports = function(){
 	});
 
 	// User
+	router.get('/player', function(req, res){
+		res.sendFile(root + '/player.html');
+	});
 
 
 	// 404
