@@ -1,10 +1,12 @@
 define([
 	// Vendors
 	'backbone',
+	'underscore',
 	'socket.io'
 ], function (
 	// Vendors
 	Backbone,
+	_,
 	io
 ) {
 

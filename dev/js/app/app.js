@@ -53,6 +53,8 @@ define([
 
 			// Create overlays
 			this.loaderOverlay = new LoaderOverlay();
+
+			console.log('app -> initialize', SocketController);
 		},
 
 
