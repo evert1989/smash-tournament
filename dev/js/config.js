@@ -11,6 +11,9 @@ require.config({
 		'handlebars': 		'../vendor/handlebars/handlebars.min',
 		'backbone-super': 	'../vendor/backbone-super/backbone-super/backbone-super-min',
 
+		// Socket.io
+		'socket.io':		'/socket.io/socket.io',
+
 		// Directory paths
 		'template':			'../../template'
 	}

@@ -10,7 +10,7 @@ define([
 
 	'use strict';
 
-	let AudioController = function () {
+	const AudioController = function () {
 		this.initialize.apply(this);
 	};
 

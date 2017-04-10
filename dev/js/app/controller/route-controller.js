@@ -12,7 +12,7 @@ define([
 
 	'use strict';
 
-	let RouteController = Backbone.Router.extend({
+	const RouteController = Backbone.Router.extend({
 
 		// Vars
 		// ----
