@@ -181,8 +181,25 @@ html {
   display: block;
   width: 100%; }
 
-.page__test {
-  background: #cc051c; }
+.page__lobby h1 {
+  margin: 2em 0;
+  text-align: center; }
+
+.page__lobby .code-container {
+  border: 1px solid #009958;
+  display: flex;
+  height: 125px;
+  margin: 0 auto;
+  width: 500px; }
+  .page__lobby .code-container__item {
+    border-right: 1px solid #009958;
+    font-size: 2em;
+    height: 125px;
+    line-height: 125px;
+    text-align: center;
+    width: 125px; }
+    .page__lobby .code-container__item:last-child {
+      border: none; }
 
 .overlay {
   bottom: 0;

@@ -7,7 +7,7 @@ define([
 	'model/state/app-state', // Singleton
 	// Views
 	'view/page/intro/intro-page',
-	'view/page/test/test-page'
+	'view/page/lobby/lobby-page'
 ], function (
 	// Vendors
 	Backbone,
@@ -17,7 +17,7 @@ define([
 	AppState,
 	// Views
 	IntroPage,
-	TestPage
+	LobbyPage
 ) {
 
 	'use strict';
@@ -45,7 +45,7 @@ define([
 		initialize: function () {
 			this.pageViews = [
 				new IntroPage({TYPE: AppState.PAGE.INTRO}),
-				new TestPage({TYPE: AppState.PAGE.TEST})
+				new LobbyPage({TYPE: AppState.PAGE.LOBBY})
 			];
 		},
 
@@ -104,8 +104,8 @@ define([
 					activePage = AppState.PAGE.INTRO;
 					break;
 
-				case RouteState.ROUTE.TEST:
-					activePage = AppState.PAGE.TEST;
+				case RouteState.ROUTE.LOBBY:
+					activePage = AppState.PAGE.LOBBY;
 					break;
 
 				default:

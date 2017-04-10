@@ -19,7 +19,7 @@ define([
 		// Routes
 		ROUTE: {
 			INTRO: '',
-			TEST: '!test'
+			LOBBY: '!lobby'
 		},
 
 

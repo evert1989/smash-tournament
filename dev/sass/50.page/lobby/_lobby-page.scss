@@ -1,0 +1,28 @@
+.page__lobby {
+
+  h1 {
+    margin: 2em 0;
+    text-align: center;
+  }
+
+  .code-container {
+    border: 1px solid $green;
+    display: flex;
+    height: 125px;
+    margin: 0 auto;
+    width: 500px;
+
+    &__item {
+      border-right: 1px solid $green;
+      font-size: 2em;
+      height: 125px;
+      line-height: 125px;
+      text-align: center;
+      width: 125px;
+
+      &:last-child {
+        border: none;
+      }
+    }
+  }
+}

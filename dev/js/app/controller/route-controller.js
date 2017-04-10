@@ -18,7 +18,7 @@ define([
 		// ----
 		routes: {
 			'': 		'routeIndex',
-			'!test': 	'routeTest'
+			'!lobby': 	'routeLobby'
 		},
 
 		// States
@@ -52,8 +52,8 @@ define([
 			RouteState.set({route: RouteState.ROUTE.INTRO});
 		},
 
-		routeTest: function(){
-			RouteState.set({route: RouteState.ROUTE.TEST});
+		routeLobby: function(){
+			RouteState.set({route: RouteState.ROUTE.LOBBY});
 		}
 	});
 

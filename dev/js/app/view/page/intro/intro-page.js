@@ -80,7 +80,7 @@ define([
 		// Events
 		// ------
 		onClickStart: function(){
-			RouteController.navigate(RouteState.ROUTE.TEST, {trigger: true});
+			RouteController.navigate(RouteState.ROUTE.LOBBY, {trigger: true});
 		},
 
 

@@ -4,7 +4,6 @@ define([
 	// Controllers
 	'controller/view-controller',
 	'controller/route-controller', // Singleton
-	'controller/socket-controller', // Singleton
 	// Views
 	'view/base/base-view',
 	'view/overlay/loader-overlay'
@@ -14,7 +13,6 @@ define([
 	// Controllers
 	ViewController,
 	RouteController,
-	SocketController,
 	// Views
 	BaseView,
 	LoaderOverlay
@@ -53,8 +51,6 @@ define([
 
 			// Create overlays
 			this.loaderOverlay = new LoaderOverlay();
-
-			console.log('app -> initialize', SocketController);
 		},
 
 

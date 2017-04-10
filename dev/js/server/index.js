@@ -15,21 +15,28 @@ global.port = 4240;
 // ------------------
 const app = express();
 const server = http.Server(app);
-const router = require('./module/router')();
 const io = require('socket.io')(server);
 
-// start Router
+
+// Modules
+// -------
+const router = require('./module/router')();
+const sockets = require('./module/socket');
+
+
+// Start router
+// ------------
 app.use('/', router);
 
 
 // Socket.io
 // ---------
 io.on('connection', function(socket){
-	console.log('server -> a user connected.');
 
-	socket.on('disconnect', function(){
-		console.log('server -> a user disconnected');
-	});
+	console.log('SOCKET - application connected.');
+
+	socket.on('app:request', sockets.application.onRequest);
+	socket.on('disconnect', sockets.application.disconnected);
 });
 
 
