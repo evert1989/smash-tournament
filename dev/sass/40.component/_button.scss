@@ -1,0 +1,18 @@
+.button {
+  @include center-x(relative);
+
+  background: $green;
+  border: 1px solid $green;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  margin: 20px auto;
+  padding: 20px 15px;
+  text-align: center;
+  text-transform: uppercase;
+
+  &__down {
+    background: $white;
+    color: $green;
+  }
+}
