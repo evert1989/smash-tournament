@@ -47,7 +47,7 @@ define([
 				date.getMilliseconds()
 			];
 
-			return components.join("");
+			return components.join('');
 		}
 	});
 

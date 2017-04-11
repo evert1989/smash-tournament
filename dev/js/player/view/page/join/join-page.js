@@ -1,10 +1,10 @@
 define([
 	// Controllers
-	'controller/route-controller', // Singleton
+	//'controller/route-controller', // Singleton
 	'controller/socket-controller', // Singleton
 	// Models
 	'model/player-model', // Singleton
-	'model/state/route-state', // Singleton
+	//'model/state/route-state', // Singleton
 	// Views
 	'view/base/page-view',
 	// Components
@@ -13,11 +13,11 @@ define([
 	'text!template/player/page/join/join-page.hbs'
 ], function (
 	// Controllers
-	RouteController,
+	//RouteController,
 	SocketController,
 	// Models
 	PlayerModel,
-	RouteState,
+	//RouteState,
 	// Views
 	PageView,
 	// Components
