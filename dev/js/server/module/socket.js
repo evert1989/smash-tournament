@@ -27,7 +27,7 @@ module.exports = {
 	application: {
 
 		disconnected: function () {
-			console.log("SOCKET - application disconnected.");
+			//console.log("SOCKET - application disconnected.");
 		},
 
 		onRequest: function (obj) {

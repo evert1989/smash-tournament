@@ -5,6 +5,7 @@ define([
 	'collection/player-collection', // Singleton
 	// Controller
 	'controller/socket-controller', // Singleton
+	'controller/roster-controller', // Singleton
 	// Models
 	'model/state/socket-state', // Singleton
 	// Component
@@ -21,6 +22,7 @@ define([
 	PlayerCollection,
 	// Controller
 	SocketController,
+	RosterController,
 	// Models
 	SocketState,
 	// Component
@@ -139,7 +141,9 @@ define([
 
 		// Clicks
 		onClickLock: function(){
+			if(!RosterController.hasReachedMinimumPlayers()) { return; }
 			SocketController.requestLockPlayers();
+			RosterController.createRoster();
 		},
 
 

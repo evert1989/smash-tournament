@@ -14,12 +14,13 @@ define([
 
 	const PlayerCollection = Backbone.Collection.extend({
 
+		// Vars
+		// ----
 		model: PlayerModel,
 
 
-		// Constructor
-		// -----------
-		initialize: function () {}
+		/** @constructor */
+		initialize: function () {},
 	});
 
 	return new PlayerCollection();
