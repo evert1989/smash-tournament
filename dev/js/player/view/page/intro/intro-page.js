@@ -1,7 +1,6 @@
 define([
 	// Controllers
 	'controller/route-controller', // Singleton
-	'controller/audio-controller', // Singleton
 	// Models
 	'model/state/route-state', // Singleton
 	// Components
@@ -9,11 +8,10 @@ define([
 	// Views
 	'view/base/page-view',
 	// Templates
-	'text!template/app/page/intro/intro-page.hbs'
+	'text!template/player/page/intro/intro-page.hbs'
 ], function (
 	// Controllers
 	RouteController,
-	AudioController,
 	// Models
 	RouteState,
 	// Components
@@ -30,7 +28,7 @@ define([
 
 		// Vars
 		// ----
-		btnStart: {},
+		btnJoin: {},
 
 		/** @constructor */
 		initialize: function (options) {
@@ -49,9 +47,6 @@ define([
 				return;
 			}
 
-			// Audio
-			AudioController.playSound(AudioController.AUDIO.INTRO, true);
-
 			this.createButtons();
 			this.addListeners();
 		},
@@ -61,9 +56,6 @@ define([
 				return;
 			}
 
-			// Audio
-			AudioController.pauseSound();
-
 			this.removeListeners();
 			this.$el.remove();
 		},
@@ -72,26 +64,26 @@ define([
 		// Buttons
 		// -------
 		createButtons: function(){
-			this.btnStart = new Button();
-			this.btnStart.render(this.$('.btn-start-js'));
+			this.btnJoin = new Button();
+			this.btnJoin.render(this.$('.btn-join-js'));
 		},
 
 
 		// Events
 		// ------
 		onClickStart: function(){
-			RouteController.navigate(RouteState.ROUTE.LOBBY, {trigger: true});
+			RouteController.navigate(RouteState.ROUTE.JOIN, {trigger: true});
 		},
 
 
 		// Listeners
 		// ---------
 		addListeners: function(){
-			this.listenTo(this.btnStart, 'click', this.onClickStart);
+			this.listenTo(this.btnJoin, 'click', this.onClickStart);
 		},
 
 		removeListeners: function(){
-			this.stopListening(this.btnStart, 'click', this.onClickStart);
+			this.stopListening(this.btnJoin, 'click', this.onClickStart);
 		}
 	});
 });

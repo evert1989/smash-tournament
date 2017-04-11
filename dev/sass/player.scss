@@ -1,7 +1,41 @@
-html,
-body {
-  font-family: 'Arial', 'Helvetica', sans-serif;
-  margin: 0;
-  padding: 40px 0 0;
-  text-align: center;
-}
+// 10.setting
+// ----------
+@import 'global/10.setting/colors';
+@import 'global/10.setting/sizes';
+@import 'global/10.setting/fonts';
+
+
+// 20.generic
+// ----------
+@import 'global/20.generic/reset';
+
+
+// 30.tool
+// -------
+@import 'global/30.tool/mixins';
+
+
+// 40.component
+// ------------
+@import 'global/40.component/center-container';
+@import 'global/40.component/logo-main';
+@import 'global/40.component/button';
+
+
+// 50.page
+// -------
+@import 'player/50.page/page';
+// Intro
+@import 'player/50.page/intro/intro-page';
+// Join
+@import 'player/50.page/join/join-page';
+
+
+// 60.overlay
+// ----------
+@import 'player/60.overlay/overlay';
+@import 'player/60.overlay/loader-overlay';
+
+
+// 70.module
+// ---------

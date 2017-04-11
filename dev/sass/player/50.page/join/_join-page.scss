@@ -1,0 +1,25 @@
+.page__join {
+  text-align: center;
+
+  h1 {
+    margin: 20px 0;
+  }
+
+  input {
+    &[type=text],
+    &[type=number] {
+      border: 1px solid $green;
+      font-size: 30px;
+      height: 50px;
+      padding: 10px;
+      text-align: center;
+      width: 80%;
+    }
+
+    &[type=submit] {
+      left: 0;
+      margin: 40px 0;
+      transform: none;
+    }
+  }
+}

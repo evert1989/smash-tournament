@@ -1,0 +1,21 @@
+.loader-overlay {
+  background: $white;
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 1;
+  text-align: center;
+  transition: opacity 0.4s;
+
+  h1 {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  // states
+  &.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

@@ -1,13 +1,21 @@
 define([
-	// Controller
-	'controller/socket-controller',
+	// Models
+	'model/state/app-state', // Singleton
+	// Controllers
+	'controller/view-controller',
+	'controller/route-controller', // Singleton
 	// Views
 	'view/base/base-view',
+	'view/overlay/loader-overlay'
 ], function (
-	// Controller
-	SocketController,
+	// Models
+	AppState,
+	// Controllers
+	ViewController,
+	RouteController,
 	// Views
-	BaseView
+	BaseView,
+	LoaderOverlay
 ) {
 
 	'use strict';
@@ -16,24 +24,33 @@ define([
 
 		// Vars
 		// ----
-		events: {
-			'submit .pin-code': 'onSubmit'
-		},
-
 		// DOM
 		el: '.app',
-		$form: {},
-		$code: {},
-		$name: {},
+		$pages: {},
+		$overlays: {},
+
+		// Controllers
+		viewController: {},
+
+		// Views
+		loaderOverlay: {},
 
 
 		/** @constructor */
 		initialize: function () {
 			this._super();
 
-			this.$form = this.$('.pin-code');
-			this.$code = this.$('.code-js');
-			this.$name = this.$('.name-js');
+			// Set elements
+			this.$pages = this.$('.pages');
+			this.$overlays = this.$('.overlays');
+
+			// Create controllers
+			this.viewController = new ViewController();
+
+			this.viewController.setAppElement(this.$pages);
+
+			// Create overlays
+			this.loaderOverlay = new LoaderOverlay();
 		},
 
 
@@ -41,25 +58,25 @@ define([
 		// ------
 		start: function () {
 			if(this._super()) { return; }
+
+			// Start controllers
+			this.viewController.start();
+			RouteController.start();
+
+			AppState.set({isIdle: false});
+
 		},
 
 		stop: function () {
 			if(this._super()) { return; }
-		},
 
+			// Stop controllers
+			this.viewController.stop();
+			RouteController.stop();
 
-		// Events
-		// ------
-		onSubmit: function(e){
-			e.preventDefault();
+			this.remove();
 
-			// todo: refactor to player model
-			let obj = {
-				code: this.$code.val(),
-				name: this.$name.val()
-			};
-
-			SocketController.joinGame(obj);
-		},
+			AppState.set({isIdle: true});
+		}
 	});
 });

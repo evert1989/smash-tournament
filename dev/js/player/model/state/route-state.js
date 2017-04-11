@@ -8,19 +8,19 @@ define([
 
 	'use strict';
 
-	const AppState = BaseModel.extend({
+	const RouteState = BaseModel.extend({
 
 		// Vars
 		// ----
 		defaults: {
-			isIdle: true,
-			activePage: null
+			route: null
 		},
 
-		// Pages
-		PAGE: {
-			INTRO: 'page:intro',
-			LOBBY: 'page:lobby'
+		// Routes
+		ROUTE: {
+			INTRO: '',
+			JOIN: '!join',
+			STATS: '!stats'
 		},
 
 
@@ -30,5 +30,5 @@ define([
 		}
 	});
 
-	return new AppState();
+	return new RouteState();
 });

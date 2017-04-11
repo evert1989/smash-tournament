@@ -1,25 +1,25 @@
 // 10.setting
 // ----------
-@import 'app/10.setting/colors';
-@import 'app/10.setting/sizes';
-@import 'app/10.setting/fonts';
+@import 'global/10.setting/colors';
+@import 'global/10.setting/sizes';
+@import 'global/10.setting/fonts';
 
 
 // 20.generic
 // ----------
-@import 'app/20.generic/reset';
+@import 'global/20.generic/reset';
 
 
 // 30.tool
 // -------
-@import 'app/30.tool/mixins';
+@import 'global/30.tool/mixins';
 
 
 // 40.component
 // ------------
-@import 'app/40.component/center-container';
-@import 'app/40.component/logo-main';
-@import 'app/40.component/button';
+@import 'global/40.component/center-container';
+@import 'global/40.component/logo-main';
+@import 'global/40.component/button';
 
 
 // 50.page
@@ -27,7 +27,7 @@
 @import 'app/50.page/page';
 // Intro
 @import 'app/50.page/intro/intro-page';
-//Test
+// Lobby
 @import 'app/50.page/lobby/lobby-page';
 
 

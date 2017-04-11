@@ -20,7 +20,8 @@ define([
 		// Pages
 		PAGE: {
 			INTRO: 'page:intro',
-			LOBBY: 'page:lobby'
+			JOIN: 'page:join',
+			STATS: 'page:stats'
 		},
 
 

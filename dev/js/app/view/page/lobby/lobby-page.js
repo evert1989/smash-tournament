@@ -8,7 +8,7 @@ define([
 	// Views
 	'view/base/page-view',
 	// Templates
-	'text!template/page/lobby/lobby-page.hbs'
+	'text!template/app/page/lobby/lobby-page.hbs'
 ], function (
 	// Vendors
 	_,

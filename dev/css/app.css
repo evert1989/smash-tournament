@@ -163,6 +163,7 @@ html {
   cursor: pointer;
   display: inline-block;
   margin: 20px auto;
+  min-width: 250px;
   padding: 20px 15px;
   text-align: center;
   text-transform: uppercase; }
