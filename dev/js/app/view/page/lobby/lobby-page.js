@@ -6,8 +6,10 @@ define([
 	// Controller
 	'controller/socket-controller', // Singleton
 	'controller/roster-controller', // Singleton
+	'controller/route-controller', // Singleton
 	// Models
 	'model/state/socket-state', // Singleton
+	'model/state/route-state', // Singleton
 	// Component
 	'component/button',
 	// Views
@@ -23,8 +25,10 @@ define([
 	// Controller
 	SocketController,
 	RosterController,
+	RouteController,
 	// Models
 	SocketState,
+	RouteState,
 	// Component
 	Button,
 	// Views
@@ -142,8 +146,11 @@ define([
 		// Clicks
 		onClickLock: function(){
 			if(!RosterController.hasReachedMinimumPlayers()) { return; }
+
 			SocketController.requestLockPlayers();
 			RosterController.createRoster();
+
+			RouteController.navigate(RouteState.ROUTE.ROUND, {trigger: true});
 		},
 
 

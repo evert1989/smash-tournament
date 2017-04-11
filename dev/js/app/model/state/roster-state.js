@@ -14,6 +14,7 @@ define([
 			minimumPlayers: 4,
 			playersPerRound: 4,
 			totalRounds: 0,
+			activeRound: 0,
 			rounds: []
 		},
 

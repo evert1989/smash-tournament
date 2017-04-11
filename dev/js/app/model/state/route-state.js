@@ -19,7 +19,8 @@ define([
 		// Routes
 		ROUTE: {
 			INTRO: '',
-			LOBBY: '!lobby'
+			LOBBY: '!lobby',
+			ROUND: '!round'
 		},
 
 

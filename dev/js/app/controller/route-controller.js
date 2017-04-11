@@ -18,7 +18,8 @@ define([
 		// ----
 		routes: {
 			'': 		'routeIndex',
-			'!lobby': 	'routeLobby'
+			'!lobby': 	'routeLobby',
+			'!round':	'routeRound'
 		},
 
 		// States
@@ -54,7 +55,11 @@ define([
 
 		routeLobby: function(){
 			RouteState.set({route: RouteState.ROUTE.LOBBY});
-		}
+		},
+
+		routeRound: function(){
+			RouteState.set({route: RouteState.ROUTE.ROUND});
+		},
 	});
 
 	return new RouteController();

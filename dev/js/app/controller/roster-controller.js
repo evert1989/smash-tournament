@@ -1,6 +1,7 @@
 define([
 	// Vendors
 	'backbone',
+	'underscore',
 	// Collection
 	'collection/player-collection', // Singleton
 	// Models
@@ -8,6 +9,7 @@ define([
 ], function (
 	// Vendors
 	Backbone,
+	_,
 	// Collection
 	PlayerCollection,
 	// Models

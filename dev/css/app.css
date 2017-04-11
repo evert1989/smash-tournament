@@ -227,6 +227,9 @@ html {
   text-transform: uppercase;
   width: 30%; }
 
+.page__round {
+  background: #cc051c; }
+
 .overlay {
   bottom: 0;
   left: 0;

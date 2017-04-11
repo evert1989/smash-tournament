@@ -234,7 +234,7 @@ html {
 
 .wait-overlay {
   background: #009958;
-  color: white; }
+  color: #fff; }
   .wait-overlay h1 {
     left: 10%;
     line-height: 1.5em;

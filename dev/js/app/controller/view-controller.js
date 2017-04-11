@@ -7,7 +7,8 @@ define([
 	'model/state/app-state', // Singleton
 	// Views
 	'view/page/intro/intro-page',
-	'view/page/lobby/lobby-page'
+	'view/page/lobby/lobby-page',
+	'view/page/round/round-page'
 ], function (
 	// Vendors
 	Backbone,
@@ -17,7 +18,8 @@ define([
 	AppState,
 	// Views
 	IntroPage,
-	LobbyPage
+	LobbyPage,
+	RoundPage
 ) {
 
 	'use strict';
@@ -45,7 +47,8 @@ define([
 		initialize: function () {
 			this.pageViews = [
 				new IntroPage({TYPE: AppState.PAGE.INTRO}),
-				new LobbyPage({TYPE: AppState.PAGE.LOBBY})
+				new LobbyPage({TYPE: AppState.PAGE.LOBBY}),
+				new RoundPage({TYPE: AppState.PAGE.ROUND})
 			];
 		},
 
@@ -106,6 +109,10 @@ define([
 
 				case RouteState.ROUTE.LOBBY:
 					activePage = AppState.PAGE.LOBBY;
+					break;
+
+				case RouteState.ROUTE.ROUND:
+					activePage = AppState.PAGE.ROUND;
 					break;
 
 				default:
