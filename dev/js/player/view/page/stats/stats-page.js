@@ -1,4 +1,6 @@
 define([
+	// Models
+	'model/player-model', // Singleton
 	// Views
 	'view/base/page-view',
 	// Overlays
@@ -6,6 +8,8 @@ define([
 	// Templates
 	'text!template/player/page/stats/stats-page.hbs'
 ], function (
+	// Models
+	PlayerModel,
 	// Views
 	PageView,
 	// Overlays
@@ -32,7 +36,7 @@ define([
 		// Toggle Class
 		// ------------
 		start: function ($parent) {
-			if (this._super(template, $parent, null)) {
+			if (this._super(template, $parent, PlayerModel.toJSON())) {
 				return;
 			}
 

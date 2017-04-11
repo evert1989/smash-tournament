@@ -145,7 +145,8 @@ html {
   left: 50%;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+  width: 100%; }
 
 .logo-main {
   pointer-events: none; }
@@ -192,8 +193,10 @@ html {
     border: 1px solid #009958;
     font-size: 30px;
     height: 50px;
+    letter-spacing: 0.1em;
     padding: 10px;
     text-align: center;
+    text-transform: uppercase;
     width: 80%; }
   .page__join input[type=submit] {
     left: 0;
@@ -208,6 +211,23 @@ html {
     transition: opacity 0.4s; }
   .page__join.error .error {
     opacity: 1; }
+
+.page__stats {
+  text-align: center;
+  text-transform: uppercase; }
+  .page__stats h1 {
+    display: block;
+    font-size: 40px;
+    margin: 0 auto;
+    padding: 50px 0;
+    width: 90%; }
+  .page__stats h2 {
+    margin: 15px 0; }
+  .page__stats p {
+    color: #009958;
+    font-size: 60px;
+    font-weight: bold;
+    padding-bottom: 40px; }
 
 .overlay {
   bottom: 0;

@@ -13,7 +13,9 @@ define([
 		defaults: {
 			id: null,
 			name: null,
-			code: null
+			code: null,
+			points: 0,
+			ranking: 0
 		},
 
 
