@@ -173,6 +173,7 @@ html {
 
 .page {
   min-height: 100%;
+  overflow: auto;
   position: relative; }
 
 .page__intro .center-container {

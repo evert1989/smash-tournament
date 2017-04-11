@@ -173,6 +173,7 @@ html {
 
 .page {
   min-height: 100%;
+  overflow: auto;
   position: relative; }
 
 .page__intro .center-container {
@@ -201,6 +202,30 @@ html {
     width: 125px; }
     .page__lobby .code-container__item:last-child {
       border: none; }
+
+.page__lobby .player-container {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  width: 80%; }
+
+.page__lobby .start-container {
+  background: #fff;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  height: 100px; }
+
+.lobby-player {
+  border: 1px solid #009958;
+  margin: 20px auto;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 30%; }
 
 .overlay {
   bottom: 0;

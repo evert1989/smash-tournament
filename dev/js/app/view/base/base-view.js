@@ -1,10 +1,12 @@
 define([
 	// Vendors
 	'backbone',
+	'handlebars',
 	'backbone-super'
 ], function (
 	// Vendors
-	Backbone
+	Backbone,
+	Handlebars
 ) {
 
 	'use strict';
@@ -19,6 +21,32 @@ define([
 
 		/** @constructor */
 		initialize: function () {},
+
+
+		// Template
+		// --------
+		/**
+		 * @desc Builds template and appends it to target DOM element. Called from 'start' method.
+		 * @param {string} template
+		 * @param {object} $parent
+		 * @param {object} templateData
+		 */
+		render: function(template, $parent, templateData){
+			let compiledTemplate = this.compileTemplate(template);
+			let data = templateData || {};
+
+			this.setElement(compiledTemplate(data));
+			this.$el.appendTo($parent);
+		},
+
+		/**
+		 * @desc Compiles a handlebars template.
+		 * @param {string} template
+		 * @returns {object} Handlebars template.
+		 */
+		compileTemplate: function(template){
+			return Handlebars.compile(template);
+		},
 
 
 		// Toggle Class

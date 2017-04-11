@@ -13,7 +13,7 @@ define([
 		defaults: {
 			id: null,
 			name: null,
-			code: null,
+			code: null
 		},
 
 

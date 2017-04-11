@@ -27,6 +27,9 @@ define([
 			this.TYPE = options.TYPE;
 		},
 
+
+		// Template
+		// --------
 		/**
 		 * @desc Builds template and appends it to target DOM element. Called from 'start' method.
 		 * @param {string} template

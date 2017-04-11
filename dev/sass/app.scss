@@ -24,16 +24,17 @@
 
 // 50.page
 // -------
-@import 'app/50.page/page';
+@import 'global/50.page/page';
 // Intro
 @import 'app/50.page/intro/intro-page';
 // Lobby
 @import 'app/50.page/lobby/lobby-page';
+@import 'app/50.page/lobby/lobby-player';
 
 
 // 60.overlay
 // ----------
-@import 'app/60.overlay/overlay';
+@import 'global/60.overlay/overlay';
 @import 'app/60.overlay/loader-overlay';
 
 

@@ -3,6 +3,8 @@ define([
 	'backbone',
 	'underscore',
 	'socket.io',
+	// Collections
+	'collection/player-collection', // Singleton
 	// Models
 	'model/state/socket-state' // Singleton
 ], function (
@@ -10,6 +12,8 @@ define([
 	Backbone,
 	_,
 	io,
+	// Collections
+	PlayerCollection,
 	// Models
 	SocketState
 ) {
@@ -70,9 +74,9 @@ define([
 
 		// Events
 		// ------
-		onPlayerJoin: function(obj){
-			// todo: create collection for players and receive model from callback
-			console.log('socket-controller -> onPlayerJoin', obj.name);
+		onPlayerJoin: function(player){
+			console.log('socket-controller -> onPlayerJoin', player);
+			PlayerCollection.add(player);
 		},
 
 

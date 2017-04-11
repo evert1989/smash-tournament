@@ -1,23 +1,29 @@
 define([
 	// Vendors
 	'underscore',
+	// Collection
+	'collection/player-collection', // Singleton
 	// Controller
 	'controller/socket-controller', // Singleton
 	// Models
 	'model/state/socket-state', // Singleton
 	// Views
 	'view/base/page-view',
+	'view/page/lobby/lobby-player',
 	// Templates
 	'text!template/app/page/lobby/lobby-page.hbs'
 ], function (
 	// Vendors
 	_,
+	// Collection
+	PlayerCollection,
 	// Controller
 	SocketController,
 	// Models
 	SocketState,
 	// Views
 	PageView,
+	LobbyPlayer,
 	// Templates
 	template
 ) {
@@ -31,6 +37,8 @@ define([
 		// DOM
 		$codeItems: {},
 		$playerContainer: {},
+
+		players: [], // array of player views
 
 
 		/** @constructor */
@@ -60,6 +68,7 @@ define([
 				return;
 			}
 
+			this.removeListeners();
 			this.$el.remove();
 		},
 
@@ -88,6 +97,40 @@ define([
 		// ------
 		onChangePinCode: function(){
 			_.each(SocketState.get('pinCode'), this.updateNumberByIndex, this);
+
+			this.addListeners();
 		},
+
+		// Player
+		onPlayerAdded: function(model){
+			if(!!_.findWhere(this.players, {model: model})) {
+				return;
+			}
+
+			let playerView = new LobbyPlayer({model: model});
+			playerView.render(this.$playerContainer);
+
+			this.players.push(playerView);
+		},
+
+		onPlayerRemoved: function(model){
+			let targetView = _.findWhere(this.players, {model: model});
+			let targetIndex = _.indexOf(this.players, targetView);
+
+			targetView.stop();
+			this.players.slice(targetIndex, 1);
+		},
+
+
+		// Listeners
+		addListeners: function(){
+			this.listenTo(PlayerCollection, 'add', this.onPlayerAdded);
+			this.listenTo(PlayerCollection, 'remove', this.onPlayerRemoved);
+		},
+
+		removeListeners: function(){
+			this.stopListening(PlayerCollection, 'add', this.onPlayerAdded);
+			this.stopListening(PlayerCollection, 'remove', this.onPlayerRemoved);
+		}
 	});
 });
