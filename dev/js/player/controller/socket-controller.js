@@ -2,12 +2,16 @@ define([
 	// Vendors
 	'backbone',
 	'underscore',
-	'socket.io'
+	'socket.io',
+	// Models
+	'model/player-model'
 ], function (
 	// Vendors
 	Backbone,
 	_,
-	io
+	io,
+	// Models
+	PlayerModel
 ) {
 
 	'use strict';
@@ -36,9 +40,8 @@ define([
 
 		// Join
 		// ----
-		joinGame: function(obj){
-			console.log('socket-controller -> joinGame');
-			this.socket.emit(this.MESSAGE.JOIN, obj);
+		joinGame: function(){
+			this.socket.emit(this.MESSAGE.JOIN, PlayerModel.toJSON());
 		}
 	});
 

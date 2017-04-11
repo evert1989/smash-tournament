@@ -28,7 +28,8 @@ define([
 
 		// Vars
 		// ----
-		btnJoin: {},
+		btnFindGame: {},
+
 
 		/** @constructor */
 		initialize: function (options) {
@@ -64,14 +65,14 @@ define([
 		// Buttons
 		// -------
 		createButtons: function(){
-			this.btnJoin = new Button();
-			this.btnJoin.render(this.$('.btn-join-js'));
+			this.btnFindGame = new Button();
+			this.btnFindGame.render(this.$('.btn-join-js'));
 		},
 
 
 		// Events
 		// ------
-		onClickStart: function(){
+		onClickFindGame: function(){
 			RouteController.navigate(RouteState.ROUTE.JOIN, {trigger: true});
 		},
 
@@ -79,11 +80,11 @@ define([
 		// Listeners
 		// ---------
 		addListeners: function(){
-			this.listenTo(this.btnJoin, 'click', this.onClickStart);
+			this.listenTo(this.btnFindGame, 'click', this.onClickFindGame);
 		},
 
 		removeListeners: function(){
-			this.stopListening(this.btnJoin, 'click', this.onClickStart);
+			this.stopListening(this.btnFindGame, 'click', this.onClickFindGame);
 		}
 	});
 });

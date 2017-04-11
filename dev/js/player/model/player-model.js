@@ -8,7 +8,7 @@ define([
 
 	'use strict';
 
-	return Backbone.Model.extend({
+	const PlayerModel = Backbone.Model.extend({
 
 		defaults: {
 			id: null,
@@ -19,8 +19,37 @@ define([
 
 		// Constructor
 		// -----------
-		initialize: function () {
-			console.log('player-model -> initialize');
+		initialize: function () {},
+
+
+		// Create
+		// ------
+		createPlayer: function(name, code){
+			this.set({
+				id: this.getUniqueId(),
+				name: name.toLowerCase(),
+				code: code
+			});
+		},
+
+
+		// Get
+		// ---
+		getUniqueId: function(){
+			let date = new Date();
+			let components = [
+				date.getYear(),
+				date.getMonth(),
+				date.getDate(),
+				date.getHours(),
+				date.getMinutes(),
+				date.getSeconds(),
+				date.getMilliseconds()
+			];
+
+			return components.join("");
 		}
 	});
+
+	return new PlayerModel();
 });
