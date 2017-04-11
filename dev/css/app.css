@@ -228,8 +228,33 @@ html {
   text-transform: uppercase;
   width: 30%; }
 
-.page__round {
-  background: #cc051c; }
+.page__round h1 {
+  font-size: 40px;
+  margin: 40px 0;
+  text-align: center; }
+
+.page__round .player-container {
+  display: flex; }
+
+.round-player {
+  border: 1px solid #009958;
+  margin: auto;
+  padding: 20px;
+  width: 22%; }
+  .round-player h2,
+  .round-player h3 {
+    margin: 20px 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%; }
+  .round-player input[type=number] {
+    border: 1px solid #009958;
+    font-size: 30px;
+    height: 50px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%; }
 
 .overlay {
   bottom: 0;
