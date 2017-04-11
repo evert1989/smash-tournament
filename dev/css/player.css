@@ -199,6 +199,15 @@ html {
     left: 0;
     margin: 40px 0;
     transform: none; }
+  .page__join .error {
+    background: #cc051c;
+    color: #fff;
+    opacity: 0;
+    padding: 10px;
+    text-transform: uppercase;
+    transition: opacity 0.4s; }
+  .page__join.error .error {
+    opacity: 1; }
 
 .overlay {
   bottom: 0;
@@ -220,5 +229,20 @@ html {
     top: 50%;
     transform: translateY(-50%); }
   .loader-overlay.is-hidden {
+    opacity: 0;
+    pointer-events: none; }
+
+.wait-overlay {
+  background: #009958;
+  color: white; }
+  .wait-overlay h1 {
+    left: 10%;
+    line-height: 1.5em;
+    position: absolute;
+    right: 10%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%); }
+  .wait-overlay.is-hidden {
     opacity: 0;
     pointer-events: none; }

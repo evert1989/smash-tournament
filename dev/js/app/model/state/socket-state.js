@@ -12,6 +12,7 @@ define([
 
 		defaults: {
 			pinCode: null,
+			isLocked: false
 		},
 
 

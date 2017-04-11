@@ -7,6 +7,8 @@ define([
 	'controller/socket-controller', // Singleton
 	// Models
 	'model/state/socket-state', // Singleton
+	// Component
+	'component/button',
 	// Views
 	'view/base/page-view',
 	'view/page/lobby/lobby-player',
@@ -21,6 +23,8 @@ define([
 	SocketController,
 	// Models
 	SocketState,
+	// Component
+	Button,
 	// Views
 	PageView,
 	LobbyPlayer,
@@ -39,6 +43,9 @@ define([
 		$playerContainer: {},
 
 		players: [], // array of player views
+
+		// buttons
+		btnLock: {},
 
 
 		/** @constructor */
@@ -73,6 +80,14 @@ define([
 		},
 
 
+		// Buttons
+		// -------
+		createButtons: function(){
+			this.btnLock = new Button();
+			this.btnLock.render(this.$('.btn-lock-js'));
+		},
+
+
 		// Socket
 		// ------
 		checkForPinCode: function(){
@@ -98,6 +113,7 @@ define([
 		onChangePinCode: function(){
 			_.each(SocketState.get('pinCode'), this.updateNumberByIndex, this);
 
+			this.createButtons();
 			this.addListeners();
 		},
 
@@ -121,16 +137,25 @@ define([
 			this.players.slice(targetIndex, 1);
 		},
 
+		// Clicks
+		onClickLock: function(){
+			SocketController.requestLockPlayers();
+		},
+
 
 		// Listeners
 		addListeners: function(){
 			this.listenTo(PlayerCollection, 'add', this.onPlayerAdded);
 			this.listenTo(PlayerCollection, 'remove', this.onPlayerRemoved);
+
+			this.listenTo(this.btnLock, 'click', this.onClickLock);
 		},
 
 		removeListeners: function(){
 			this.stopListening(PlayerCollection, 'add', this.onPlayerAdded);
 			this.stopListening(PlayerCollection, 'remove', this.onPlayerRemoved);
+
+			this.stopListening(this.btnLock, 'click', this.onClickLock);
 		}
 	});
 });

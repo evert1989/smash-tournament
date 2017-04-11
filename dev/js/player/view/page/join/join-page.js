@@ -1,10 +1,10 @@
 define([
 	// Controllers
-	//'controller/route-controller', // Singleton
+	'controller/route-controller', // Singleton
 	'controller/socket-controller', // Singleton
 	// Models
 	'model/player-model', // Singleton
-	//'model/state/route-state', // Singleton
+	'model/state/route-state', // Singleton
 	// Views
 	'view/base/page-view',
 	// Components
@@ -13,11 +13,11 @@ define([
 	'text!template/player/page/join/join-page.hbs'
 ], function (
 	// Controllers
-	//RouteController,
+	RouteController,
 	SocketController,
 	// Models
 	PlayerModel,
-	//RouteState,
+	RouteState,
 	// Views
 	PageView,
 	// Components
@@ -91,7 +91,24 @@ define([
 			}
 
 			PlayerModel.createPlayer(this.$name.val(), this.$code.val());
+
+			this.listenToOnce(SocketController, SocketController.RESPONSE.JOIN_SUCCESS, this.onJoinSuccess);
+			this.listenToOnce(SocketController, SocketController.RESPONSE.JOIN_NOT_FOUND, this.onJoinNotFound);
 			SocketController.joinGame();
+		},
+
+		onJoinSuccess: function(){
+			this.stopListening(SocketController, SocketController.RESPONSE.JOIN_NOT_FOUND, this.onJoinNotFound);
+
+			this.$el.toggleClass('error', false);
+
+			RouteController.navigate(RouteState.ROUTE.STATS, {trigger: true});
+		},
+
+		onJoinNotFound: function(){
+			this.stopListening(SocketController, SocketController.RESPONSE.JOIN_SUCCESS, this.onJoinSuccess);
+
+			this.$el.toggleClass('error', true);
 		}
 	});
 });

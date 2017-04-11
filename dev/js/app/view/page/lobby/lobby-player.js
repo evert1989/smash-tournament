@@ -22,8 +22,6 @@ define([
 		/** @constructor */
 		initialize: function (options) {
 			this._super(options);
-
-			console.log('lobby-player -> initialize', this.model.toJSON());
 		},
 
 

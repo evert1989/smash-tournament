@@ -22,4 +22,19 @@
       transform: none;
     }
   }
+
+  .error {
+    background: $red;
+    color: $white;
+    opacity: 0;
+    padding: 10px;
+    text-transform: uppercase;
+    transition: opacity 0.4s;
+  }
+
+  &.error {
+    .error {
+      opacity: 1;
+    }
+  }
 }

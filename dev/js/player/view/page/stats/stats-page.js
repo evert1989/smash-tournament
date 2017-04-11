@@ -1,11 +1,15 @@
 define([
 	// Views
 	'view/base/page-view',
+	// Overlays
+	'view/overlay/wait-overlay',
 	// Templates
 	'text!template/player/page/stats/stats-page.hbs'
 ], function (
 	// Views
 	PageView,
+	// Overlays
+	WaitOverLay,
 	// Templates
 	template
 ) {
@@ -16,6 +20,7 @@ define([
 
 		// Vars
 		// ----
+		waitOverlay: null,
 
 
 		/** @constructor */
@@ -30,12 +35,17 @@ define([
 			if (this._super(template, $parent, null)) {
 				return;
 			}
+
+			this.waitOverlay = new WaitOverLay();
 		},
 
 		stop: function () {
 			if(this._super()){
 				return;
 			}
+
+			this.waitOverlay.stop();
+			this.waitOverlay = null;
 
 			this.$el.remove();
 		}

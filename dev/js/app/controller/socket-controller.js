@@ -36,7 +36,8 @@ define([
 		},
 
 		REQUEST: {
-			CODE: 'pin-code'
+			CODE: 'pin-code',
+			LOCK_DOWN: 'lock-down'
 		},
 
 		RESPONSE: {
@@ -58,32 +59,33 @@ define([
 		// Requests
 		// --------
 		requestFourNumberCode: function(){
-			this.socket.on(this.RESPONSE.CODE, this.onResponseCode);
-			this.socket.emit(this.MESSAGE.REQUEST, this.REQUEST.CODE);
+			this.socket.once(this.RESPONSE.CODE, this.onResponseCode);
+			this.socket.emit(this.MESSAGE.REQUEST, {message: this.REQUEST.CODE});
+		},
+
+		requestLockPlayers: function(){
+			SocketState.set({isLocked: true});
+			this.socket.off('application-' + SocketState.get('pinCode') + ':join', this.onPlayerJoin);
+
+			this.socket.emit(this.MESSAGE.REQUEST, {message: this.REQUEST.LOCK_DOWN, code: SocketState.get('pinCode')});
 		},
 
 
 		// Responses
 		// ---------
-		onResponseCode: function(message){
-			SocketState.set({pinCode: message});
+		onResponseCode: function(pinCode){
+			SocketState.set({pinCode: pinCode});
 
-			this.addListeners();
+			this.socket.on('application-' + SocketState.get('pinCode') + ':join', this.onPlayerJoin);
 		},
 
 
 		// Events
 		// ------
 		onPlayerJoin: function(player){
-			console.log('socket-controller -> onPlayerJoin', player);
+			if(SocketState.get('isLocked')) { return; }
+
 			PlayerCollection.add(player);
-		},
-
-
-		// Listeners
-		// ---------
-		addListeners: function(){
-			this.socket.on('application-' + SocketState.get('pinCode') + ':join', this.onPlayerJoin);
 		}
 	});
 

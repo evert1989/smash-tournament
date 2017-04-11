@@ -214,10 +214,10 @@ html {
 .page__lobby .start-container {
   background: #fff;
   bottom: 0;
+  height: 100px;
   left: 0;
   position: fixed;
-  right: 0;
-  height: 100px; }
+  right: 0; }
 
 .lobby-player {
   border: 1px solid #009958;

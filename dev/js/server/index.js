@@ -5,17 +5,18 @@ const http = require('http');
 const path = require('path');
 
 
-// Global vars
-// -----------
-global.rootPath = path.resolve(__dirname + '/../..');
-global.port = 4240;
-
-
 // Initialize modules
 // ------------------
 const app = express();
 const server = http.Server(app);
+
+
+// Global vars
+// -----------
+global.rootPath = path.resolve(__dirname + '/../..');
+global.port = 4240;
 global.io = require('socket.io')(server);
+global.activeServers = [];
 
 
 // Modules

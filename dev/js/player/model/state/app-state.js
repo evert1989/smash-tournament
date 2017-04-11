@@ -14,6 +14,7 @@ define([
 		// ----
 		defaults: {
 			isIdle: true,
+			isGameStarted: false,
 			activePage: null
 		},
 
