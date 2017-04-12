@@ -118,7 +118,9 @@ define([
 			let isValueSet = true;
 
 			_.each(this.players, function(playerView){
-				if(!isValueSet) return;
+				if(!isValueSet) {
+					return;
+				}
 
 				isValueSet = playerView.$score.val().length > 0;
 			}, this);
@@ -144,8 +146,9 @@ define([
 			let activeRound = RosterState.get('activeRound');
 			activeRound += 1;
 
-			if(activeRound > RosterState.get('totalRounds')){
+			if(activeRound >= RosterState.get('totalRounds')){
 				// todo: go to semi finales
+				console.log('round-page -> onClickEndRound', 'knockout');
 
 			} else {
 				RosterState.set({activeRound: activeRound});

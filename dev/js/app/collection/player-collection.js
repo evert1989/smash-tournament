@@ -20,7 +20,7 @@ define([
 
 
 		/** @constructor */
-		initialize: function () {},
+		initialize: function () {}
 	});
 
 	return new PlayerCollection();

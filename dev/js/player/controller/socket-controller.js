@@ -66,6 +66,14 @@ define([
 			AppState.set({isGameStarted: true});
 		},
 
+		onUpdatePoints: function(points){
+			PlayerModel.set({points: points});
+		},
+
+		onUpdateRanking: function(ranking){
+			PlayerModel.set({ranking: ranking});
+		},
+
 
 		// Events
 		// ------
@@ -75,6 +83,8 @@ define([
 			this.trigger(this.RESPONSE.JOIN_SUCCESS);
 
 			this.socket.on('players-' + PlayerModel.get('code') + ':lock', this.onGameLocked);
+			this.socket.on('player-' + PlayerModel.id + ':update-points', this.onUpdatePoints);
+			this.socket.on('player-' + PlayerModel.id + ':update-ranking', this.onUpdateRanking);
 		},
 
 		onJoinNotFound: function(){

@@ -35,6 +35,7 @@ app.use('/', router);
 global.io.on('connection', function(socket){
 
 	socket.on('app:request', sockets.application.onRequest);
+	socket.on('app:update', sockets.application.onUpdate);
 	socket.on('disconnect', sockets.application.disconnected);
 
 	socket.on('player:join', sockets.player.joinGame);

@@ -21,6 +21,6 @@ define([
 
 		// Constructor
 		// -----------
-		initialize: function () {},
+		initialize: function () {}
 	});
 });

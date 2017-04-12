@@ -32,12 +32,18 @@ define([
 
 
 		MESSAGE: {
-			REQUEST: 'app:request'
+			REQUEST: 'app:request',
+			UPDATE: 'app:update'
 		},
 
 		REQUEST: {
 			CODE: 'pin-code',
 			LOCK_DOWN: 'lock-down'
+		},
+
+		UPDATE: {
+			PLAYER_POINTS: 'player-points',
+			PLAYER_RANKING: 'player-ranking'
 		},
 
 		RESPONSE: {
@@ -58,22 +64,43 @@ define([
 
 		// Requests
 		// --------
-		requestFourNumberCode: function(){
+		requestFourNumberCode: function () {
 			this.socket.once(this.RESPONSE.CODE, this.onResponseCode);
 			this.socket.emit(this.MESSAGE.REQUEST, {message: this.REQUEST.CODE});
 		},
 
-		requestLockPlayers: function(){
+		requestLockPlayers: function () {
 			SocketState.set({isLocked: true});
 			this.socket.off('application-' + SocketState.get('pinCode') + ':join', this.onPlayerJoin);
+			this.listenTo(PlayerCollection, 'change:points', this.updatePlayerPoints);
+			this.listenTo(PlayerCollection, 'change:ranking', this.updatePlayerRanking);
 
 			this.socket.emit(this.MESSAGE.REQUEST, {message: this.REQUEST.LOCK_DOWN, code: SocketState.get('pinCode')});
 		},
 
 
+		// Updates
+		// -------
+		updatePlayerPoints: function (model, points) {
+			this.socket.emit(this.MESSAGE.UPDATE, {
+				message: this.UPDATE.PLAYER_POINTS,
+				id: model.id,
+				points: points
+			});
+		},
+
+		updatePlayerRanking: function (model, ranking) {
+			this.socket.emit(this.MESSAGE.UPDATE, {
+				message: this.UPDATE.PLAYER_RANKING,
+				id: model.id,
+				ranking: ranking
+			});
+		},
+
+
 		// Responses
 		// ---------
-		onResponseCode: function(pinCode){
+		onResponseCode: function (pinCode) {
 			SocketState.set({pinCode: pinCode});
 
 			this.socket.on('application-' + SocketState.get('pinCode') + ':join', this.onPlayerJoin);
@@ -82,8 +109,10 @@ define([
 
 		// Events
 		// ------
-		onPlayerJoin: function(player){
-			if(SocketState.get('isLocked')) { return; }
+		onPlayerJoin: function (player) {
+			if (SocketState.get('isLocked')) {
+				return;
+			}
 
 			PlayerCollection.add(player);
 		}

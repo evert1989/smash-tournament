@@ -1,13 +1,9 @@
 define([
-	// Collection
-	'collection/player-collection',
 	// Views
 	'view/base/base-view',
 	// Templates
 	'text!template/app/page/round/round-player.hbs'
 ], function (
-	// Collection
-	PlayerCollection,
 	// Views
 	BaseView,
 	// Template

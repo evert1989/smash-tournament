@@ -24,8 +24,9 @@ function findWithAttr(array, attr, value) {
 // ------
 module.exports = {
 
+	// Application socket
+	// ------------------
 	application: {
-
 		disconnected: function () {
 			//console.log("SOCKET - application disconnected.");
 		},
@@ -46,17 +47,30 @@ module.exports = {
 					global.io.emit('players-' + obj.code + ':lock');
 					break;
 			}
+		},
 
+		onUpdate: function(obj){
+			switch(obj.message){
+				case 'player-points':
+					global.io.emit('player-' + obj.id + ':update-points', obj.points);
+					break;
+
+				case 'player-ranking':
+					global.io.emit('player-' + obj.id + ':update-ranking', obj.ranking);
+					break;
+			}
 		}
 	},
 
-	player: {
 
+	// Player socket
+	// -------------
+	player: {
 		joinGame: function (obj) {
 			let isActiveGame = findWithAttr(global.activeServers, 'code', obj.code);
 
 			if (isActiveGame) {
-				console.log("SOCKET - player joined game: " + obj.name);
+				console.log('SOCKET - player joined game(' + obj.code + '): ' + obj.name);
 
 				global.io.emit(obj.id + '-join:success');
 				global.io.emit('application-' + obj.code + ':join', obj);
