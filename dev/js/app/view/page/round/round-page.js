@@ -153,7 +153,6 @@ define([
 			} else {
 				RosterState.set({activeRound: activeRound});
 			}
-
 		},
 
 

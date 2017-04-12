@@ -1,3 +1,5 @@
+'use strict';
+
 // Libraries
 // ---------
 const express = require('express');

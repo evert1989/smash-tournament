@@ -27,7 +27,7 @@ gulp.task('val:scss', function () {
 });
 
 gulp.task('val:js', function () {
-	return gulp.src(['dev/js/app/**/*.js', 'dev/js/player/**/*.js'])
+	return gulp.src(['dev/js/app/**/*.js', 'dev/js/player/**/*.js', 'dev/js/server/**/*.js'])
 		.pipe(jshint())
 		.pipe(jshint.reporter(stylish));
 });

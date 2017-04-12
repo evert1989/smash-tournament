@@ -1,16 +1,18 @@
+'use strict';
+
 // Generation
 // ----------
 function generatePinCode() {
 	let min = 0,
 		max = 9999;
-	return ("000" + Math.floor(Math.random() * (max - min + 1))).substr(-4);
-};
+	return ('000' + Math.floor(Math.random() * (max - min + 1))).substr(-4);
+}
 
 
 // Lookup
 // ------
 function findWithAttr(array, attr, value) {
-	for(var i = 0; i < array.length; i += 1) {
+	for(let i = 0; i < array.length; i += 1) {
 		if(array[i][attr] === value) {
 			return true;
 		}
