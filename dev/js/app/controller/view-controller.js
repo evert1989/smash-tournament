@@ -8,7 +8,8 @@ define([
 	// Views
 	'view/page/intro/intro-page',
 	'view/page/lobby/lobby-page',
-	'view/page/round/round-page'
+	'view/page/round/round-page',
+	'view/page/knockout/knockout-page'
 ], function (
 	// Vendors
 	Backbone,
@@ -19,7 +20,8 @@ define([
 	// Views
 	IntroPage,
 	LobbyPage,
-	RoundPage
+	RoundPage,
+	KnockoutPage
 ) {
 
 	'use strict';
@@ -48,7 +50,8 @@ define([
 			this.pageViews = [
 				new IntroPage({TYPE: AppState.PAGE.INTRO}),
 				new LobbyPage({TYPE: AppState.PAGE.LOBBY}),
-				new RoundPage({TYPE: AppState.PAGE.ROUND})
+				new RoundPage({TYPE: AppState.PAGE.ROUND}),
+				new KnockoutPage({TYPE: AppState.PAGE.KNOCKOUT})
 			];
 		},
 
@@ -113,6 +116,10 @@ define([
 
 				case RouteState.ROUTE.ROUND:
 					activePage = AppState.PAGE.ROUND;
+					break;
+
+				case RouteState.ROUTE.KNOCKOUT:
+					activePage = AppState.PAGE.KNOCKOUT;
 					break;
 
 				default:

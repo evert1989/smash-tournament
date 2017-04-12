@@ -21,7 +21,8 @@ define([
 		PAGE: {
 			INTRO: 'page:intro',
 			LOBBY: 'page:lobby',
-			ROUND: 'page:round'
+			ROUND: 'page:round',
+			KNOCKOUT: 'page:knockout'
 		},
 
 

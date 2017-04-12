@@ -17,9 +17,10 @@ define([
 		// Vars
 		// ----
 		routes: {
-			'': 		'routeIndex',
-			'!lobby': 	'routeLobby',
-			'!round':	'routeRound'
+			'': 		 'routeIndex',
+			'!lobby': 	 'routeLobby',
+			'!round':	 'routeRound',
+			'!knockout': 'routeKnockout',
 		},
 
 		// States
@@ -60,6 +61,11 @@ define([
 		routeRound: function(){
 			RouteState.set({route: RouteState.ROUTE.ROUND});
 		},
+
+		routeKnockout: function(){
+			console.log('route-controller -> routeKnockout');
+			RouteState.set({route: RouteState.ROUTE.KNOCKOUT});
+		}
 	});
 
 	return new RouteController();

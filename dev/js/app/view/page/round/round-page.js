@@ -3,9 +3,13 @@ define([
 	'underscore',
 	// Collection
 	'collection/player-collection', // Singleton
+	// Controllers
+	'controller/route-controller', // Singleton
+	'controller/roster-controller', // Singleton
 	// Component
 	'component/button',
 	// Models
+	'model/state/route-state', // Singleton
 	'model/state/roster-state', // Singleton
 	// Views
 	'view/base/page-view',
@@ -17,9 +21,13 @@ define([
 	_,
 	// Collection
 	PlayerCollection,
+	// Controllers
+	RouteController,
+	RosterController,
 	// Component
 	Button,
 	// Models
+	RouteState,
 	RosterState,
 	// Views
 	PageView,
@@ -147,8 +155,7 @@ define([
 			activeRound += 1;
 
 			if(activeRound >= RosterState.get('totalRounds')){
-				// todo: go to semi finales
-				console.log('round-page -> onClickEndRound', 'knockout');
+				RouteController.navigate(RouteState.ROUTE.KNOCKOUT, {trigger: true});
 
 			} else {
 				RosterState.set({activeRound: activeRound});

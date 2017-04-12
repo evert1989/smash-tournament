@@ -31,10 +31,10 @@ define([
 
 		// Sorting
 		// -------
-		sortPlayer: function (playerModel, index) {
+		sortPlayer: function (playerModel) {
 			let isInRankedPoints = _.findWhere(this.rankedPoints, {points: playerModel.get('points')});
 
-			let ranking = index + 1;
+			let ranking = this.rankedPoints.length ? this.rankedPoints[this.rankedPoints.length - 1].ranking + 1 : 1;
 
 			if (!isInRankedPoints) {
 				this.rankedPoints.push({points: playerModel.get('points'), ranking: ranking});
@@ -44,6 +44,21 @@ define([
 			}
 
 			playerModel.set({ranking: ranking});
+		},
+
+
+		// Knockout
+		// --------
+		updateEliminatedPlayers: function(){
+			this.each(this.isPlayerEliminated);
+		},
+
+		isPlayerEliminated: function(playerModel){
+			playerModel.set({eliminated: playerModel.get('ranking') > 4});
+		},
+
+		getKnockoutPlayers: function(){
+			return this.where({eliminated: false});
 		},
 
 

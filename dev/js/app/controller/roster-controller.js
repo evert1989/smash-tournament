@@ -92,6 +92,73 @@ define([
 		},
 
 
+		// Knockout
+		// --------
+		createKnockout: function(){
+			PlayerCollection.updateEliminatedPlayers();
+			RosterState.set({knockoutPlayers: PlayerCollection.getKnockoutPlayers()});
+
+			this.createKnockoutRounds();
+		},
+
+		createKnockoutRounds: function(){
+			let players = RosterState.get('knockoutPlayers').sort(function(a, b) {
+				return a.get('ranking') - b.get('ranking');
+			});
+
+			players = [
+				new Backbone.Model({ranking: 1}),
+				new Backbone.Model({ranking: 1}),
+				new Backbone.Model({ranking: 1}),
+				new Backbone.Model({ranking: 1}),
+				new Backbone.Model({ranking: 2}),
+				new Backbone.Model({ranking: 3}),
+				new Backbone.Model({ranking: 4}),
+				new Backbone.Model({ranking: 4}),
+				new Backbone.Model({ranking: 4}),
+				new Backbone.Model({ranking: 4})
+			];
+
+			let arrayIndex = 0;
+			let ranking = 1;
+			let nextRanking = 2;
+			let maxRanking = 4;
+			let rounds = [];
+
+			_.each(players, function(player){
+				console.log('roster-controller -> player', player.get('ranking'));
+			});
+
+			while(arrayIndex < players.length) {
+				if(players[arrayIndex].get('ranking') === ranking
+					&& (players[arrayIndex].get('ranking') === players[arrayIndex+1].get('ranking')
+					|| players[arrayIndex+1].get('ranking') === nextRanking)
+				) {
+					rounds.push([players[arrayIndex], players[arrayIndex+1]]);
+
+					arrayIndex += 2;
+
+				} else if(players[arrayIndex].get('ranking') === nextRanking){
+
+					if(nextRanking === maxRanking){
+						ranking = nextRanking;
+					}
+
+					arrayIndex += 1;
+
+				} else if(nextRanking < maxRanking) {
+					ranking += 2;
+					nextRanking += 2;
+
+				} else {
+					arrayIndex = players.length;
+				}
+			}
+
+			console.log('roster-controller -> createKnockoutRounds', rounds);
+		},
+
+
 		// Helpers
 		// -------
 		getRandomNumber: function (max, min) {

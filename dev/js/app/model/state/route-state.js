@@ -20,7 +20,8 @@ define([
 		ROUTE: {
 			INTRO: '',
 			LOBBY: '!lobby',
-			ROUND: '!round'
+			ROUND: '!round',
+			KNOCKOUT: '!knockout'
 		},
 
 

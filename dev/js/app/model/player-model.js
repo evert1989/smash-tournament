@@ -15,7 +15,8 @@ define([
 			name: null,
 			code: null,
 			points: 0,
-			ranking: 0
+			ranking: 0,
+			eliminated: false
 		},
 
 
