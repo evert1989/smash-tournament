@@ -16,7 +16,7 @@ const server = http.Server(app);
 // Global vars
 // -----------
 global.rootPath = path.resolve(__dirname + '/../..');
-global.port = process.env.PORT || 4240;
+global.port = process.env.PORT || 5000;
 global.io = require('socket.io')(server);
 global.activeServers = [];
 
@@ -29,6 +29,7 @@ const sockets = require('./module/socket');
 
 // Start router
 // ------------
+app.set('port', global.port);
 app.use('/', router);
 
 
