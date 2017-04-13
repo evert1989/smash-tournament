@@ -32,7 +32,6 @@ define([
 		// Init
 		// ----
 		initialize: function () {
-			this._super();
 			this.addListeners();
 		},
 

@@ -104,7 +104,7 @@ define([
 
 			this.$el.toggleClass('error', false);
 
-			RouteController.navigate(RouteState.ROUTE.STATS, {trigger: true});
+			RouteController.navigate(RouteState.ROUTE.STATS + '/' + PlayerModel.get('name'), {trigger: true});
 		},
 
 		onJoinNotFound: function(){

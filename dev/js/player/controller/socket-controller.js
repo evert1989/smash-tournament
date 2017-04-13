@@ -31,7 +31,8 @@ define([
 
 		// Message
 		MESSAGE: {
-			JOIN: 'player:join'
+			JOIN: 'player:join',
+			REQUEST_PLAYER_DATA: 'player:request-data',
 		},
 
 		RESPONSE: {
@@ -42,7 +43,7 @@ define([
 		// Init
 		// ----
 		initialize: function () {
-			_.bindAll(this, 'onJoinSuccess', 'onJoinNotFound');
+			_.bindAll(this, 'onJoinSuccess', 'onJoinNotFound', 'onPlayerFound');
 			this.socket = io();
 		},
 
@@ -54,6 +55,14 @@ define([
 			this.socket.once(PlayerModel.id + this.RESPONSE.JOIN_NOT_FOUND, this.onJoinNotFound);
 
 			this.socket.emit(this.MESSAGE.JOIN, PlayerModel.toJSON());
+		},
+
+
+		// Request
+		// -------
+		requestPlayerData: function(){
+			this.socket.once('player-found', this.onPlayerFound);
+			this.socket.emit(this.MESSAGE.REQUEST_PLAYER_DATA, PlayerModel.toJSON());
 		},
 
 
@@ -81,6 +90,22 @@ define([
 
 		onUpdateWinner: function(){
 			PlayerModel.trigger('winner');
+		},
+
+		onPlayerFound: function (obj) {
+			AppState.set({isGameStarted: true});
+
+			PlayerModel.set(obj);
+
+			if (PlayerModel.get('knockout')) {
+				PlayerModel.trigger('knockout-candidate');
+			}
+
+			if (PlayerModel.get('winner')) {
+				PlayerModel.trigger('winner');
+			}
+
+			this.onJoinSuccess();
 		},
 
 

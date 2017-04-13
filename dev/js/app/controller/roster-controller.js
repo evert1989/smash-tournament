@@ -136,6 +136,7 @@ define([
 			// Winner
 			} else if (players.length === 1) {
 				// WINNER
+				players[0].set({winner: true});
 				RosterState.set({winner: players[0]});
 				return;
 			}

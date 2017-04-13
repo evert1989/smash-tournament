@@ -17,7 +17,9 @@ define([
 			code: null,
 			points: 0,
 			ranking: 0,
-			eliminated: false
+			eliminated: false,
+			knockout: false,
+			winner: false
 		}
 	});
 });

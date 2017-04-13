@@ -58,7 +58,7 @@ define([
 		// Init
 		// ----
 		initialize: function () {
-			_.bindAll(this, 'onResponseCode');
+			_.bindAll(this, 'onResponseCode', 'onRequestPlayerData');
 			this.socket = io();
 		},
 
@@ -72,7 +72,12 @@ define([
 
 		requestLockPlayers: function () {
 			SocketState.set({isLocked: true});
+
+			// Socket
 			this.socket.off('application-' + SocketState.get('pinCode') + ':join', this.onPlayerJoin);
+			this.socket.on('request:player-data', this.onRequestPlayerData);
+
+			// Application
 			this.listenTo(PlayerCollection, 'change:points', this.updatePlayerPoints);
 			this.listenTo(PlayerCollection, 'change:ranking', this.updatePlayerRanking);
 			this.listenTo(PlayerCollection, 'change:eliminated', this.updatePlayerEliminated);
@@ -108,7 +113,10 @@ define([
 			});
 		},
 
-		updateKnockoutStarted: function(){
+		updateKnockoutStarted: function () {
+			PlayerCollection.each(function (playerModel) {
+				playerModel.set({knockout: true});
+			});
 			PlayerCollection.each(this.updatePlayerKnockout, this);
 		},
 
@@ -146,7 +154,14 @@ define([
 			}
 
 			PlayerCollection.add(player);
-		}
+		},
+
+		onRequestPlayerData: function(player){
+			let targetPlayer = PlayerCollection.findWhere({name: player.name});
+			if(!targetPlayer) { return ;}
+
+			this.socket.emit('player-found', targetPlayer.toJSON());
+		},
 	});
 
 	return new SocketController();

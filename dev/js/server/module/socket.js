@@ -74,6 +74,10 @@ module.exports = {
 					global.io.emit('player-' + obj.id + ':update-winner');
 					break;
 			}
+		},
+
+		onPlayerFound: function(obj){
+			global.io.emit('player-found', obj);
 		}
 	},
 
@@ -91,6 +95,10 @@ module.exports = {
 			} else {
 				global.io.emit(obj.id + '-join:not-found');
 			}
+		},
+
+		requestData: function(obj){
+			global.io.emit('request:player-data', obj);
 		}
 	}
 };

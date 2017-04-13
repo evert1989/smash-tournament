@@ -36,13 +36,17 @@ app.use('/', router);
 // Socket.io
 // ---------
 global.io.on('connection', function(socket){
+	// General
+	socket.on('disconnect', sockets.general.disconnected);
 
+	// Application
 	socket.on('app:request', sockets.application.onRequest);
 	socket.on('app:update', sockets.application.onUpdate);
+	socket.on('player-found', sockets.application.onPlayerFound);
 
+	// Player
 	socket.on('player:join', sockets.player.joinGame);
-
-	socket.on('disconnect', sockets.general.disconnected);
+	socket.on('player:request-data', sockets.player.requestData);
 });
 
 

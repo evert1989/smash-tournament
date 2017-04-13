@@ -1,13 +1,19 @@
 define([
 	// Vendors
 	'backbone',
+	// Controllers
+	'controller/socket-controller', // Singleton
 	// Models
-	'model/state/route-state' // Singleton
+	'model/state/route-state', 		// Singleton
+	'model/player-model'			// Singleton
 ], function (
 	// Vendors
 	Backbone,
+	// Controllers
+	SocketController,
 	// Models
-	RouteState
+	RouteState,
+	PlayerModel
 ) {
 
 	'use strict';
@@ -18,9 +24,10 @@ define([
 		// Vars
 		// ----
 		routes: {
-			'': 		'routeIndex',
-			'!join': 	'routeJoin',
-			'!stats': 	'routeStats'
+			'': 				'routeIndex',
+			'!join': 			'routeJoin',
+			'!stats': 			'routeStats',
+			'!stats/:player': 	'routeStatsPlayer'
 		},
 
 		// States
@@ -55,6 +62,15 @@ define([
 		},
 
 		routeStats: function(){
+			RouteState.set({route: RouteState.ROUTE.STATS});
+		},
+
+		routeStatsPlayer: function(playerName){
+			if(!PlayerModel.id && !PlayerModel.code){
+				PlayerModel.set({name: playerName});
+				SocketController.requestPlayerData();
+			}
+
 			RouteState.set({route: RouteState.ROUTE.STATS});
 		},
 	});

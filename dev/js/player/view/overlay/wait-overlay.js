@@ -32,10 +32,8 @@ define([
 		// Init
 		// ----
 		initialize: function () {
-			this._super();
-
-			this.onChangeIsGameStarted();
 			this.addListeners();
+			this.onChangeIsGameStarted();
 		},
 
 		render: function(){
