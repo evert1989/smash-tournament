@@ -8,6 +8,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return Backbone.Model.extend({
 
 		defaults: {
@@ -17,11 +18,6 @@ define([
 			points: 0,
 			ranking: 0,
 			eliminated: false
-		},
-
-
-		// Constructor
-		// -----------
-		initialize: function () {}
+		}
 	});
 });

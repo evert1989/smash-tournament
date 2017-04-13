@@ -12,6 +12,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return Backbone.View.extend({
 
 		// Vars
@@ -23,10 +24,10 @@ define([
 		isStarted: true,
 
 
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function () {
 			this._super();
-
 			this.addListeners();
 		},
 

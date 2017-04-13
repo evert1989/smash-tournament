@@ -14,16 +14,19 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const PlayerCollection = Backbone.Collection.extend({
 
 		// Vars
 		// ----
 		model: PlayerModel,
 
-		rankedPoints: [],
+		// Arrays
+		rankedPoints: [], // Array of points that have a rank linked to it.
 
 
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function () {
 			this.addListeners();
 		},
@@ -31,11 +34,16 @@ define([
 
 		// Sorting
 		// -------
+		/**
+		 * @desc Update the ranking of the player by his points.
+		 * @param {object} playerModel
+		 */
 		sortPlayer: function (playerModel) {
+			// Check if points already have a rank and set ranking accordingly.
 			let isInRankedPoints = _.findWhere(this.rankedPoints, {points: playerModel.get('points')});
-
 			let ranking = this.rankedPoints.length ? this.rankedPoints[this.rankedPoints.length - 1].ranking + 1 : 1;
 
+			// If the points are not in the rankingPoints array, add them. Otherwise use the existing ranking.
 			if (!isInRankedPoints) {
 				this.rankedPoints.push({points: playerModel.get('points'), ranking: ranking});
 
@@ -43,6 +51,7 @@ define([
 				ranking = isInRankedPoints.ranking;
 			}
 
+			// Update ranking for player.
 			playerModel.set({ranking: ranking});
 		},
 
@@ -53,6 +62,10 @@ define([
 			this.each(this.isPlayerEliminated);
 		},
 
+		/**
+		 * @desc Check if player is eliminated or not.
+		 * @param {object} playerModel
+		 */
 		isPlayerEliminated: function(playerModel){
 			if(playerModel.get('eliminated')) { return; }
 			playerModel.set({eliminated: playerModel.get('ranking') > 4});

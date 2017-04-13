@@ -2,14 +2,15 @@ define([
 	// Vendors
 	'underscore',
 	// Collection
-	'collection/player-collection', // Singleton
+	'collection/player-collection', 	// Singleton
 	// Controllers
-	'controller/route-controller', // Singleton
-	'controller/roster-controller', // Singleton
-	'controller/socket-controller', // Singleton
+	'controller/route-controller', 		// Singleton
+	'controller/roster-controller', 	// Singleton
+	'controller/socket-controller', 	// Singleton
+	'controller/audio-controller', 		// Singleton
 	// Models
-	'model/state/route-state', // Singleton
-	'model/state/roster-state', // Singleton
+	'model/state/route-state', 			// Singleton
+	'model/state/roster-state', 		// Singleton
 	// Views
 	'view/base/page-view',
 	'view/page/knockout/knockout-player',
@@ -24,6 +25,7 @@ define([
 	RouteController,
 	RosterController,
 	SocketController,
+	AudioController,
 	// Models
 	RouteState,
 	RosterState,
@@ -36,16 +38,18 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return PageView.extend({
 
 		// Vars
 		// ----
 		knockoutPlayers: [],
 
+		$title: {},
 		$playerContainer: {},
 
-
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function (options) {
 			this._super(options);
 		},
@@ -58,12 +62,12 @@ define([
 		 * @param {object} $parent
 		 */
 		start: function ($parent) {
-			if (this._super(template, $parent, null)) {
-				return;
-			}
+			if (this._super(template, $parent, null)) { return; }
 
+			this.$title = this.$('.title');
 			this.$playerContainer = this.$('.player-container');
 
+			AudioController.playSound(AudioController.AUDIO.ONE_ON_ONE, false);
 			SocketController.updateKnockoutStarted();
 			RosterController.createKnockout();
 
@@ -72,9 +76,7 @@ define([
 		},
 
 		stop: function () {
-			if (this._super()) {
-				return;
-			}
+			if (this._super()) { return; }
 
 			this.removeListeners();
 			this.$el.remove();
@@ -84,7 +86,26 @@ define([
 		// Populating
 		// ----------
 		populateKnockout: function(){
+			let copy;
+
+			// Update the copy for the knockout rounds.
+			if(PlayerCollection.getKnockoutPlayers().length > 2 && PlayerCollection.getKnockoutPlayers().length <= 4){
+				copy = 'SEMI FINALS';
+
+			} else if (PlayerCollection.getKnockoutPlayers().length === 2) {
+				copy = 'FINALE';
+				AudioController.playSound(AudioController.AUDIO.FINAL_BATTLE, false);
+
+			} else {
+				copy = 'KNOCKOUT PHASE';
+			}
+
+			this.$title.text(copy);
+
+			// Clear previous round
 			this.clearRound();
+
+			// Create players for current knockout round
 			_.each(RosterState.get('knockoutRounds')[RosterState.get('activeKnockout')], this.createSinglePlayer, this);
 		},
 
@@ -96,6 +117,10 @@ define([
 
 		// Player
 		// ------
+		/**
+		 * @desc Create playerView for each player that is in the current knockout round.
+		 * @param {string} playerName
+		 */
 		createSinglePlayer: function(playerName){
 			// Create Player
 			let targetPlayer = PlayerCollection.findWhere({name: playerName});
@@ -114,15 +139,22 @@ define([
 			this.populateKnockout();
 		},
 
+		/**
+		 * @desc When there's a click on one of the players. Update the players that are eliminated
+		 * @param model
+		 */
 		onClickWinner: function(model){
+			// Check which player won and which one was eliminated.
 			_.each(this.knockoutPlayers, function(player){
 				this.stopListening(player, 'click', this.onClickWinner);
 				player.model.set({eliminated: player.model !== model});
 			}, this);
 
+			// Update the knockout round.
 			let activeKnockout = RosterState.get('activeKnockout');
 			activeKnockout += 1;
 
+			// If all rounds are played, create new knockout rounds, else go to next round.
 			if(activeKnockout >= RosterState.get('knockoutRounds').length){
 				RosterController.createKnockout();
 				this.populateKnockout();

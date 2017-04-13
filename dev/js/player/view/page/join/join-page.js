@@ -1,10 +1,10 @@
 define([
 	// Controllers
-	'controller/route-controller', // Singleton
+	'controller/route-controller', 	// Singleton
 	'controller/socket-controller', // Singleton
 	// Models
-	'model/player-model', // Singleton
-	'model/state/route-state', // Singleton
+	'model/player-model', 			// Singleton
+	'model/state/route-state', 		// Singleton
 	// Views
 	'view/base/page-view',
 	// Components
@@ -28,6 +28,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return PageView.extend({
 
 		// Vars
@@ -41,7 +42,8 @@ define([
 		$code: {},
 
 
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function (options) {
 			this._super(options);
 		},

@@ -8,18 +8,14 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const SocketState = BaseModel.extend({
 
 		defaults: {
 			pinCode: null,
 			isLocked: false
-		},
-
-
-		// Constructor
-		// -----------
-		initialize: function () {}
+		}
 	});
 
-	return new SocketState();
+	return new SocketState(); // Singleton
 });

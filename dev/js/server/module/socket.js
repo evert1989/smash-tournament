@@ -26,11 +26,16 @@ function findWithAttr(array, attr, value) {
 // ------
 module.exports = {
 
+	// General
+	// -------
+	general: {
+		disconnected: function () {}
+	},
+
+
 	// Application socket
 	// ------------------
 	application: {
-		disconnected: function () {},
-
 		onRequest: function (obj) {
 			switch (obj.message) {
 				case 'pin-code':

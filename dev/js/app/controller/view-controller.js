@@ -28,6 +28,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const ViewController = function () {
 		this.initialize.apply(this);
 	};
@@ -47,7 +48,8 @@ define([
 		pageViews: [],
 
 
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function () {
 			this.pageViews = [
 				new IntroPage({TYPE: AppState.PAGE.INTRO}),
@@ -105,6 +107,7 @@ define([
 
 		// Events
 		// ------
+		// RouteState
 		onChangeRoute: function(){
 			let activePage;
 

@@ -6,10 +6,11 @@ define([
 	// Controller
 	'controller/socket-controller', // Singleton
 	'controller/roster-controller', // Singleton
-	'controller/route-controller', // Singleton
+	'controller/route-controller',  // Singleton
+	'controller/audio-controller',  // Singleton
 	// Models
-	'model/state/socket-state', // Singleton
-	'model/state/route-state', // Singleton
+	'model/state/socket-state', 	// Singleton
+	'model/state/route-state', 		// Singleton
 	// Component
 	'component/button',
 	// Views
@@ -26,6 +27,7 @@ define([
 	SocketController,
 	RosterController,
 	RouteController,
+	AudioController,
 	// Models
 	SocketState,
 	RouteState,
@@ -40,6 +42,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return PageView.extend({
 
 		// Vars
@@ -54,7 +57,8 @@ define([
 		btnLock: {},
 
 
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function (options) {
 			this._super(options);
 		},
@@ -66,9 +70,7 @@ define([
 		 * @param {object} $parent
 		 */
 		start: function ($parent) {
-			if (this._super(template, $parent, null)) {
-				return;
-			}
+			if (this._super(template, $parent, null)) { return; }
 
 			this.$codeItems = this.$('.item-js');
 			this.$playerContainer = this.$('.player-container');
@@ -77,9 +79,7 @@ define([
 		},
 
 		stop: function () {
-			if (this._super()) {
-				return;
-			}
+			if (this._super()) { return; }
 
 			this.removeListeners();
 			this.$el.remove();
@@ -124,6 +124,10 @@ define([
 		},
 
 		// Player
+		/**
+		 * @desc When a player joins, create a player view and add it to the DOM.
+		 * @param {object} model
+		 */
 		onPlayerAdded: function(model){
 			if(!!_.findWhere(this.players, {model: model})) {
 				return;
@@ -135,6 +139,10 @@ define([
 			this.players.push(playerView);
 		},
 
+		/**
+		 * @desc When a player leaves, destroy that player view and remove it from the DOM.
+		 * @param {object} model
+		 */
 		onPlayerRemoved: function(model){
 			let targetView = _.findWhere(this.players, {model: model});
 			let targetIndex = _.indexOf(this.players, targetView);
@@ -149,6 +157,9 @@ define([
 
 			SocketController.requestLockPlayers();
 			RosterController.createRoster();
+
+			// Audio
+			AudioController.playSound(AudioController.AUDIO.GAME_READY_GO, false);
 
 			RouteController.navigate(RouteState.ROUTE.ROUND, {trigger: true});
 		},

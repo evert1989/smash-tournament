@@ -12,6 +12,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return BaseView.extend({
 
 		// Vars
@@ -22,17 +23,14 @@ define([
 		$score: {},
 
 
-		/** @constructor */
-		initialize: function (options) {
-			this._super(options);
-		},
-
-
 		// Template
 		// --------
+		/**
+		 * @desc Renders the page and adds it to the given $parent.
+		 * @param {object} $parent
+		 */
 		render: function($parent){
 			this._super(template, $parent, this.model.toJSON());
-
 			this.$score = this.$('.score-js');
 		},
 

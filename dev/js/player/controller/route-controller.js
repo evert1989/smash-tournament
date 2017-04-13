@@ -12,6 +12,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const RouteController = Backbone.Router.extend({
 
 		// Vars
@@ -24,10 +25,6 @@ define([
 
 		// States
 		isStarted: false,
-
-
-		/** @constructor */
-		initialize: function () {},
 
 
 		// Toggle

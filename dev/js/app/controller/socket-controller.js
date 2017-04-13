@@ -6,8 +6,8 @@ define([
 	// Collections
 	'collection/player-collection', // Singleton
 	// Models
-	'model/state/socket-state', // Singleton
-	'model/state/roster-state' // Singleton
+	'model/state/socket-state', 	// Singleton
+	'model/state/roster-state' 		// Singleton
 ], function (
 	// Vendors
 	Backbone,
@@ -22,6 +22,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const SocketController = function () {
 		this.initialize.apply(this);
 	};
@@ -31,7 +32,6 @@ define([
 		// Vars
 		// ----
 		socket: {},
-
 
 		MESSAGE: {
 			REQUEST: 'app:request',
@@ -55,14 +55,10 @@ define([
 			CODE: 'server:response-code'
 		},
 
-
-		// Constructor
-		// -----------
+		// Init
+		// ----
 		initialize: function () {
-			_.bindAll(this,
-				'onResponseCode'
-			);
-
+			_.bindAll(this, 'onResponseCode');
 			this.socket = io();
 		},
 

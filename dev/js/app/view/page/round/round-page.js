@@ -4,13 +4,13 @@ define([
 	// Collection
 	'collection/player-collection', // Singleton
 	// Controllers
-	'controller/route-controller', // Singleton
+	'controller/route-controller', 	// Singleton
 	'controller/roster-controller', // Singleton
 	// Component
 	'component/button',
 	// Models
-	'model/state/route-state', // Singleton
-	'model/state/roster-state', // Singleton
+	'model/state/route-state', 		// Singleton
+	'model/state/roster-state', 	// Singleton
 	// Views
 	'view/base/page-view',
 	'view/page/round/round-player',
@@ -38,6 +38,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return PageView.extend({
 
 		// Vars
@@ -52,8 +53,8 @@ define([
 		// Buttons
 		btnEndRound: {},
 
-
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function (options) {
 			this._super(options);
 		},
@@ -66,9 +67,7 @@ define([
 		 * @param {object} $parent
 		 */
 		start: function ($parent) {
-			if (this._super(template, $parent, {round: RosterState.get('activeRound') + 1})) {
-				return;
-			}
+			if (this._super(template, $parent, {round: RosterState.get('activeRound') + 1})) { return; }
 
 			this.$playerContainer = this.$('.player-container');
 			this.$number = this.$('.round-number-js');
@@ -79,9 +78,7 @@ define([
 		},
 
 		stop: function () {
-			if (this._super()) {
-				return;
-			}
+			if (this._super()) { return; }
 
 			this.removeListeners();
 			this.$el.remove();
@@ -100,7 +97,6 @@ define([
 		// ----------
 		populateRound: function(){
 			this.clearRound();
-
 			_.each(RosterState.get('rounds')[RosterState.get('activeRound')], this.createSinglePlayer, this);
 		},
 
@@ -112,6 +108,10 @@ define([
 
 		// Player
 		// ------
+		/**
+		 * @desc Create playerView for each player that is in the current round.
+		 * @param {string} playerName
+		 */
 		createSinglePlayer: function(playerName){
 			let targetPlayer = PlayerCollection.findWhere({name: playerName});
 			let player = new RoundPlayer({model: targetPlayer});
@@ -127,10 +127,7 @@ define([
 			let isValueSet = true;
 
 			_.each(this.players, function(playerView){
-				if(!isValueSet) {
-					return;
-				}
-
+				if(!isValueSet) { return; }
 				isValueSet = playerView.$score.val().length > 0;
 			}, this);
 

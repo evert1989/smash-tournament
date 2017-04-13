@@ -1,9 +1,9 @@
 define([
 	// Models
-	'model/state/app-state', // Singleton
+	'model/state/app-state', 		// Singleton
 	// Controllers
 	'controller/view-controller',
-	'controller/route-controller', // Singleton
+	'controller/route-controller', 	// Singleton
 	// Views
 	'view/base/base-view',
 	'view/overlay/loader-overlay'
@@ -20,6 +20,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return BaseView.extend({
 
 		// Vars
@@ -36,17 +37,15 @@ define([
 		loaderOverlay: {},
 
 
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function () {
-			this._super();
-
 			// Set elements
 			this.$pages = this.$('.pages');
 			this.$overlays = this.$('.overlays');
 
 			// Create controllers
 			this.viewController = new ViewController();
-
 			this.viewController.setAppElement(this.$pages);
 
 			// Create overlays

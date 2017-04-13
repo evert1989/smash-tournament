@@ -8,6 +8,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const PlayerModel = Backbone.Model.extend({
 
 		defaults: {
@@ -20,13 +21,13 @@ define([
 		},
 
 
-		// Constructor
-		// -----------
-		initialize: function () {},
-
-
 		// Create
 		// ------
+		/**
+		 * @desc Updates this model with a name and the game code.
+		 * @param {string} name
+		 * @param {string} code
+		 */
 		createPlayer: function(name, code){
 			this.set({
 				id: this.getUniqueId(),

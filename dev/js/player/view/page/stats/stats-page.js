@@ -26,6 +26,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return PageView.extend({
 
 		// Vars
@@ -40,7 +41,8 @@ define([
 		$ranking: {},
 
 
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function (options) {
 			this._super(options);
 		},
@@ -48,6 +50,10 @@ define([
 
 		// Toggle Class
 		// ------------
+		/**
+		 * @desc Starts view and add view to DOM. $parent is set in view-controller.
+		 * @param {object} $parent
+		 */
 		start: function ($parent) {
 			if (this._super(template, $parent, PlayerModel.toJSON())) {
 				return;

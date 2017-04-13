@@ -8,6 +8,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const AppState = BaseModel.extend({
 
 		// Vars
@@ -23,12 +24,6 @@ define([
 			INTRO: 'page:intro',
 			JOIN: 'page:join',
 			STATS: 'page:stats'
-		},
-
-
-		/** @constructor */
-		initialize: function () {
-			this._super();
 		}
 	});
 

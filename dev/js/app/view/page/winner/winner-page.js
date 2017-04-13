@@ -1,11 +1,15 @@
 define([
+	// Controller
+	'controller/audio-controller',	// Singleton
 	// Models
-	'model/state/roster-state',
+	'model/state/roster-state',		// Singleton
 	// Views
 	'view/base/page-view',
 	// Templates
 	'text!template/app/page/winner/winner-page.hbs'
 ], function (
+	// Controller
+	AudioController,
 	// Models
 	RosterState,
 	// Views
@@ -16,12 +20,11 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return PageView.extend({
 
-		// Vars
+		// Init
 		// ----
-
-		/** @constructor */
 		initialize: function (options) {
 			this._super(options);
 		},
@@ -37,12 +40,14 @@ define([
 			if (this._super(template, $parent, RosterState.get('winner').toJSON())) {
 				return;
 			}
+
+			AudioController.playSound(AudioController.AUDIO.THE_WINNER_IS, false);
 		},
 
 		stop: function () {
-			if (this._super()) {
-				return;
-			}
+			if (this._super()) { return; }
+
+			this.$el.remove();
 		}
 	});
 });

@@ -4,7 +4,7 @@ define([
 	'underscore',
 	'socket.io',
 	// Models
-	'model/player-model', // Singleton
+	'model/player-model', 	// Singleton
 	'model/state/app-state' // Singleton
 ], function (
 	// Vendors
@@ -18,6 +18,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const SocketController = function () {
 		this.initialize.apply(this);
 	};
@@ -38,14 +39,10 @@ define([
 			JOIN_NOT_FOUND: '-join:not-found'
 		},
 
-		// Constructor
-		// -----------
+		// Init
+		// ----
 		initialize: function () {
-			_.bindAll(this,
-				'onJoinSuccess',
-				'onJoinNotFound'
-			);
-
+			_.bindAll(this, 'onJoinSuccess', 'onJoinNotFound');
 			this.socket = io();
 		},
 
@@ -94,12 +91,14 @@ define([
 			this.socket.off(PlayerModel.id + this.RESPONSE.JOIN_NOT_FOUND, this.onJoinNotFound);
 			this.trigger(this.RESPONSE.JOIN_SUCCESS);
 
+			let playerListener = 'player-' + PlayerModel.id; // Set listener id.
+
 			this.socket.on('players-' + PlayerModel.get('code') + ':lock', this.onGameLocked);
-			this.socket.on('player-' + PlayerModel.id + ':update-points', this.onUpdatePoints);
-			this.socket.on('player-' + PlayerModel.id + ':update-ranking', this.onUpdateRanking);
-			this.socket.on('player-' + PlayerModel.id + ':update-eliminated', this.onUpdateEliminated);
-			this.socket.on('player-' + PlayerModel.id + ':update-knockout', this.onUpdateKnockout);
-			this.socket.on('player-' + PlayerModel.id + ':update-winner', this.onUpdateWinner);
+			this.socket.on(playerListener + ':update-points', this.onUpdatePoints);
+			this.socket.on(playerListener + ':update-ranking', this.onUpdateRanking);
+			this.socket.on(playerListener + ':update-eliminated', this.onUpdateEliminated);
+			this.socket.on(playerListener + ':update-knockout', this.onUpdateKnockout);
+			this.socket.on(playerListener + ':update-winner', this.onUpdateWinner);
 		},
 
 		onJoinNotFound: function(){

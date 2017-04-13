@@ -10,6 +10,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const AudioController = function () {
 		this.initialize.apply(this);
 	};
@@ -18,16 +19,22 @@ define([
 
 		// Vars
 		// ----
-		// sound
+		// Sound
 		activeSound: null,
 
 		// Files
 		AUDIO: {
-			INTRO: 'asset/audio/intro.mp3'
+			INTRO: 'asset/audio/intro.mp3',
+			GAME_READY_GO: 'asset/audio/announcer/announcer_game_ready_go.mp3',
+			ONE_ON_ONE: 'asset/audio/announcer/announcer_one_on_one.mp3',
+			FINAL_BATTLE: 'asset/audio/announcer/announcer_final_battle.mp3',
+			THE_WINNER_IS: 'asset/audio/announcer/announcer_the_winner_is.mp3'
 		},
 
-		/** @constructor */
-		initialize: function () {},
+
+		// Init
+		// ----
+		initialize: function(){},
 
 
 		// Sounds

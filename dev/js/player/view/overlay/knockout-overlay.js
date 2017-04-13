@@ -20,20 +20,18 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return BaseView.extend({
 
 		// Vars
 		// ----
-		// DOM
-
 		// States
 		isStarted: false,
 
 
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function () {
-			this._super();
-
 			this.addListeners();
 		},
 

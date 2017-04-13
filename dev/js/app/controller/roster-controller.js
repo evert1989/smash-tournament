@@ -18,6 +18,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const RosterController = function () {
 		this.initialize.apply(this);
 	};
@@ -26,29 +27,37 @@ define([
 
 		// Vars
 		// ----
-		usedPlayers: [],
+		usedPlayers: [], // Array of players that have been used already.
 
 
-		/** @constructor */
-		initialize: function () {},
+		// Init
+		// ----
+		initialize: function(){},
 
 
 		// Roster
 		// ------
 		createRoster: function () {
-			RosterState.set({rounds: []});
-			let playerNames = PlayerCollection.map(function (model) {
-				return model.get('name');
-			});
+			RosterState.set({rounds: []}); // Reset rounds
 
+			// Get all player names
+			let playerNames = PlayerCollection.pluck('name');
+
+			// Calculate how many rounds are needed to make everyone play the same amount of rounds
 			this.calculateRounds(playerNames);
 
+			// Create rounds
 			for (let i = 0; i < RosterState.get('totalRounds'); i += 1) {
 				let round = this.createSingleRound(playerNames);
 				RosterState.get('rounds').push(round);
 			}
 		},
 
+		/**
+		 * @desc Create a single round for the set playersPerRound in RosterState.
+		 * @param {array} playerNames
+		 * @returns {Array} players
+		 */
 		createSingleRound: function (playerNames) {
 			let roundArray = [];
 			let isNotUsed = false;
@@ -74,6 +83,10 @@ define([
 			return roundArray;
 		},
 
+		/**
+		 * @desc Calculate and set the amount of rounds needed.
+		 * @param {array} players
+		 */
 		calculateRounds: function (players) {
 			let totalRounds = 0;
 			let remainder = -1;
@@ -102,6 +115,7 @@ define([
 		},
 
 		createKnockoutRounds: function () {
+			// Sort players by ranking
 			let players = RosterState.get('knockoutPlayers').sort(function (a, b) {
 				return a.get('ranking') - b.get('ranking');
 			});
@@ -158,14 +172,30 @@ define([
 
 		// Helpers
 		// -------
+		/**
+		 * @desc Get random number between min and max value.
+		 * @param {int} max
+		 * @param {int} min
+		 * @returns {int} randomNumber
+		 */
 		getRandomNumber: function (max, min) {
 			return Math.floor(Math.random() * (max - min + 1)) + min;
 		},
 
+		/**
+		 * @desc Check if value is in array.
+		 * @param {array} array
+		 * @param {*} value
+		 * @returns {boolean} isInArray
+		 */
 		isInArray: function (array, value) {
 			return array.indexOf(value) !== -1;
 		},
 
+		/**
+		 * @desc Check if all player names are used. If so, reset this.usedPlayers.
+		 * @param {array} playerNames
+		 */
 		checkIfAllPlayersAreUsed: function (playerNames) {
 			if (this.usedPlayers.length === playerNames.length) {
 				this.usedPlayers = [];

@@ -1,9 +1,9 @@
 define([
 	// Controllers
-	'controller/route-controller', // Singleton
-	'controller/audio-controller', // Singleton
+	'controller/route-controller', 	// Singleton
+	'controller/audio-controller', 	// Singleton
 	// Models
-	'model/state/route-state', // Singleton
+	'model/state/route-state', 		// Singleton
 	// Components
 	'component/button',
 	// Views
@@ -26,13 +26,16 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return PageView.extend({
 
 		// Vars
 		// ----
 		btnStart: {},
 
-		/** @constructor */
+
+		// Init
+		// ----
 		initialize: function (options) {
 			this._super(options);
 		},
@@ -45,9 +48,7 @@ define([
 		 * @param {object} $parent
 		 */
 		start: function ($parent) {
-			if (this._super(template, $parent, null)) {
-				return;
-			}
+			if (this._super(template, $parent, null)) { return; }
 
 			// Audio
 			AudioController.playSound(AudioController.AUDIO.INTRO, true);
@@ -57,12 +58,7 @@ define([
 		},
 
 		stop: function () {
-			if (this._super()) {
-				return;
-			}
-
-			// Audio
-			AudioController.pauseSound();
+			if (this._super()) { return; }
 
 			this.removeListeners();
 			this.$el.remove();

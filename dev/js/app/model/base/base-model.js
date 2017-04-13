@@ -9,16 +9,6 @@ define([
 
 	'use strict';
 
-	return Backbone.Model.extend({
-
-		// Vars
-		// ----
-		defaults: {
-			id: null
-		},
-
-
-		/** @constructor */
-		initialize: function () {}
-	});
+	/** @constructor */
+	return Backbone.Model.extend({});
 });

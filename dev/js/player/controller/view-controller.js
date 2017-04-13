@@ -3,8 +3,8 @@ define([
 	'backbone',
 	'underscore',
 	// Models
-	'model/state/route-state', // Singleton
-	'model/state/app-state', // Singleton
+	'model/state/route-state', 	// Singleton
+	'model/state/app-state', 	// Singleton
 	// Views
 	'view/page/intro/intro-page',
 	'view/page/join/join-page',
@@ -24,6 +24,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const ViewController = function () {
 		this.initialize.apply(this);
 	};
@@ -42,8 +43,8 @@ define([
 		currentView: null,
 		pageViews: [],
 
-
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function () {
 			this.pageViews = [
 				new IntroPage({TYPE: AppState.PAGE.INTRO}),

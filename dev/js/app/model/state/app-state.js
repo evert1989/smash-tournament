@@ -8,6 +8,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const AppState = BaseModel.extend({
 
 		// Vars
@@ -24,14 +25,8 @@ define([
 			ROUND: 'page:round',
 			KNOCKOUT: 'page:knockout',
 			WINNER: 'page:winner'
-		},
-
-
-		/** @constructor */
-		initialize: function () {
-			this._super();
 		}
 	});
 
-	return new AppState();
+	return new AppState(); // Singleton
 });

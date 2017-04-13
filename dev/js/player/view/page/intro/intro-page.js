@@ -1,8 +1,8 @@
 define([
 	// Controllers
-	'controller/route-controller', // Singleton
+	'controller/route-controller', 	// Singleton
 	// Models
-	'model/state/route-state', // Singleton
+	'model/state/route-state', 		// Singleton
 	// Components
 	'component/button',
 	// Views
@@ -24,6 +24,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return PageView.extend({
 
 		// Vars
@@ -31,7 +32,8 @@ define([
 		btnFindGame: {},
 
 
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function (options) {
 			this._super(options);
 		},

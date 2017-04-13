@@ -8,6 +8,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const RouteState = BaseModel.extend({
 
 		// Vars
@@ -21,12 +22,6 @@ define([
 			INTRO: '',
 			JOIN: '!join',
 			STATS: '!stats'
-		},
-
-
-		/** @constructor */
-		initialize: function () {
-			this._super();
 		}
 	});
 

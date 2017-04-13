@@ -8,6 +8,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	const RouteState = BaseModel.extend({
 
 		// Vars
@@ -23,14 +24,8 @@ define([
 			ROUND: '!round',
 			KNOCKOUT: '!knockout',
 			WINNER: '!winner'
-		},
-
-
-		/** @constructor */
-		initialize: function () {
-			this._super();
 		}
 	});
 
-	return new RouteState();
+	return new RouteState(); // Singleton
 });

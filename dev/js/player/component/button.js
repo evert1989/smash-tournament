@@ -8,6 +8,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return Backbone.View.extend({
 
 		// Vars
@@ -24,9 +25,6 @@ define([
 		// States
 		isValidClick: false,
 
-
-		/** @constructor */
-		initialize: function () {},
 
 		/**
 		 * @desc Sets element of button. Does not create an element from a template.

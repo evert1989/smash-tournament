@@ -16,6 +16,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return BaseView.extend({
 
 		// Vars
@@ -24,14 +25,12 @@ define([
 		button: {},
 
 
-		/** @constructor */
-		initialize: function (options) {
-			this._super(options);
-		},
-
-
 		// Template
 		// --------
+		/**
+		 * @desc Renders the page and adds it to the given $parent.
+		 * @param {object} $parent
+		 */
 		render: function($parent){
 			this._super(template, $parent, this.model.toJSON());
 
@@ -41,6 +40,10 @@ define([
 			this.addListeners();
 		},
 
+		/**
+		 * @desc Remove from DOM and memory.
+		 * @param {*} options
+		 */
 		remove: function(options){
 			this.button.remove();
 			this.removeListeners();
@@ -64,6 +67,6 @@ define([
 
 		removeListeners: function(){
 			this.stopListening(this.button, 'click', this.onClick);
-		},
+		}
 	});
 });

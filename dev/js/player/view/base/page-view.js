@@ -11,6 +11,7 @@ define([
 
 	'use strict';
 
+	/** @constructor */
 	return Backbone.View.extend({
 
 		// Vars
@@ -21,8 +22,8 @@ define([
 		// States
 		isStarted: false,
 
-
-		/** @constructor */
+		// Init
+		// ----
 		initialize: function (options) {
 			this.TYPE = options.TYPE;
 		},
@@ -62,8 +63,6 @@ define([
 
 			this.render(template, $parent, templateData);
 
-			this.addListeners();
-
 			this.isStarted = true;
 			return false;
 		},
@@ -75,25 +74,8 @@ define([
 		stop: function () {
 			if (!this.isStarted) { return true; }
 
-			this.removeListeners();
 			this.isStarted = false;
-
 			return false;
-		},
-
-
-		// Events
-		// ------
-
-
-		// Listeners
-		// ---------
-		addListeners: function () {
-
-		},
-
-		removeListeners: function () {
-
 		}
 	});
 });
