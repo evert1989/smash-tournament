@@ -47,6 +47,6 @@ global.io.on('connection', function(socket){
 
 // Listeners
 // ---------
-server.listen(global.port, function () {
-	console.log('Express started on port *:' + global.port);
+server.listen(app.get('port'), function () {
+	console.log('Express started on port *:' + app.get('port'));
 });
