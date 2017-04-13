@@ -5,6 +5,9 @@ define([
 	'view/base/page-view',
 	// Overlays
 	'view/overlay/wait-overlay',
+	'view/overlay/eliminated-overlay',
+	'view/overlay/knockout-overlay',
+	'view/overlay/winner-overlay',
 	// Templates
 	'text!template/player/page/stats/stats-page.hbs'
 ], function (
@@ -14,6 +17,9 @@ define([
 	PageView,
 	// Overlays
 	WaitOverLay,
+	EliminatedOverlay,
+	KnockoutOverlay,
+	WinnerOverlay,
 	// Templates
 	template
 ) {
@@ -25,6 +31,9 @@ define([
 		// Vars
 		// ----
 		waitOverlay: null,
+		eliminatedOverlay: null,
+		knockoutOverlay: null,
+		winnerOverlay: null,
 
 		// DOM
 		$points: {},
@@ -48,6 +57,10 @@ define([
 			this.$ranking = this.$('.ranking-js');
 
 			this.waitOverlay = new WaitOverLay();
+			this.eliminatedOverlay = new EliminatedOverlay();
+			this.knockoutOverlay = new KnockoutOverlay();
+			this.winnerOverlay = new WinnerOverlay();
+
 			this.addListeners();
 		},
 
@@ -58,6 +71,15 @@ define([
 
 			this.waitOverlay.stop();
 			this.waitOverlay = null;
+
+			this.eliminatedOverlay.stop();
+			this.eliminatedOverlay = null;
+
+			this.knockoutOverlay.stop();
+			this.knockoutOverlay = null;
+
+			this.winnerOverlay.stop();
+			this.winnerOverlay = null;
 
 			this.removeListeners();
 			this.$el.remove();

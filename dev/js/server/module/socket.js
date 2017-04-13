@@ -29,9 +29,7 @@ module.exports = {
 	// Application socket
 	// ------------------
 	application: {
-		disconnected: function () {
-			//console.log("SOCKET - application disconnected.");
-		},
+		disconnected: function () {},
 
 		onRequest: function (obj) {
 			switch (obj.message) {
@@ -40,12 +38,10 @@ module.exports = {
 
 					global.activeServers.push({code: responseCode, socket: this});
 
-					console.log('SOCKET - game started on: ' + responseCode);
 					this.emit('server:response-code', responseCode);
 					break;
 
 				case 'lock-down':
-					console.log('SOCKET - game locked down on : ' + obj.code);
 					global.io.emit('players-' + obj.code + ':lock');
 					break;
 			}
@@ -60,6 +56,18 @@ module.exports = {
 				case 'player-ranking':
 					global.io.emit('player-' + obj.id + ':update-ranking', obj.ranking);
 					break;
+
+				case 'player-eliminated':
+					global.io.emit('player-' + obj.id + ':update-eliminated', obj.eliminated);
+					break;
+
+				case 'player-knockout':
+					global.io.emit('player-' + obj.id + ':update-knockout');
+					break;
+
+				case 'player-winner':
+					global.io.emit('player-' + obj.id + ':update-winner');
+					break;
 			}
 		}
 	},
@@ -72,8 +80,6 @@ module.exports = {
 			let isActiveGame = findWithAttr(global.activeServers, 'code', obj.code);
 
 			if (isActiveGame) {
-				console.log('SOCKET - player joined game(' + obj.code + '): ' + obj.name);
-
 				global.io.emit(obj.id + '-join:success');
 				global.io.emit('application-' + obj.code + ':join', obj);
 

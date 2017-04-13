@@ -266,3 +266,48 @@ html {
   .wait-overlay.is-hidden {
     opacity: 0;
     pointer-events: none; }
+
+.eliminated-overlay {
+  background: #cc051c;
+  color: #fff; }
+  .eliminated-overlay h1 {
+    left: 10%;
+    line-height: 1.5em;
+    position: absolute;
+    right: 10%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%); }
+  .eliminated-overlay.is-hidden {
+    opacity: 0;
+    pointer-events: none; }
+
+.knockout-overlay {
+  background: #009958;
+  color: #fff; }
+  .knockout-overlay h1 {
+    left: 10%;
+    line-height: 1.5em;
+    position: absolute;
+    right: 10%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%); }
+  .knockout-overlay.is-hidden {
+    opacity: 0;
+    pointer-events: none; }
+
+.winner-overlay {
+  background: #009958;
+  color: #fff; }
+  .winner-overlay h1 {
+    left: 10%;
+    line-height: 1.5em;
+    position: absolute;
+    right: 10%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%); }
+  .winner-overlay.is-hidden {
+    opacity: 0;
+    pointer-events: none; }

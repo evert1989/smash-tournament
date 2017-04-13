@@ -6,6 +6,7 @@ define([
 	// Controllers
 	'controller/route-controller', // Singleton
 	'controller/roster-controller', // Singleton
+	'controller/socket-controller', // Singleton
 	// Models
 	'model/state/route-state', // Singleton
 	'model/state/roster-state', // Singleton
@@ -22,6 +23,7 @@ define([
 	// Controllers
 	RouteController,
 	RosterController,
+	SocketController,
 	// Models
 	RouteState,
 	RosterState,
@@ -62,7 +64,9 @@ define([
 
 			this.$playerContainer = this.$('.player-container');
 
+			SocketController.updateKnockoutStarted();
 			RosterController.createKnockout();
+
 			this.populateKnockout();
 			this.addListeners();
 		},
@@ -81,7 +85,6 @@ define([
 		// ----------
 		populateKnockout: function(){
 			this.clearRound();
-
 			_.each(RosterState.get('knockoutRounds')[RosterState.get('activeKnockout')], this.createSinglePlayer, this);
 		},
 
@@ -99,7 +102,7 @@ define([
 			let player = new KnockoutPlayer({model: targetPlayer});
 			player.render(this.$playerContainer);
 
-			this.listenTo(player, 'click', this.onClickWinner);
+			this.listenToOnce(player, 'click', this.onClickWinner);
 
 			this.knockoutPlayers.push(player);
 		},

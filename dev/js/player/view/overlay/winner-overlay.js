@@ -4,16 +4,16 @@ define([
 	// Views
 	'view/base/base-view',
 	// Models
-	'model/state/app-state', // Singleton
+	'model/player-model', // Singleton
 	// Templates
-	'text!template/player/overlay/wait-overlay.hbs'
+	'text!template/player/overlay/winner-overlay.hbs'
 ], function (
 	// Vendors
 	$,
 	// Views
 	BaseView,
 	// Models
-	AppState,
+	PlayerModel,
 	// Templates
 	template
 ) {
@@ -33,8 +33,6 @@ define([
 		/** @constructor */
 		initialize: function () {
 			this._super();
-
-			this.onChangeIsGameStarted();
 			this.addListeners();
 		},
 
@@ -63,15 +61,15 @@ define([
 
 		// Events
 		// ------
-		onChangeIsGameStarted: function () {
-			AppState.get('isGameStarted') ? this.stop() : this.start();
+		onWinner: function () {
+			this.start();
 		},
 
 
 		// Listeners
 		// ---------
 		addListeners: function () {
-			this.listenTo(AppState, 'change:isGameStarted', this.onChangeIsGameStarted);
+			this.listenTo(PlayerModel, 'winner', this.onWinner);
 		}
 	});
 });

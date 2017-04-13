@@ -74,6 +74,18 @@ define([
 			PlayerModel.set({ranking: ranking});
 		},
 
+		onUpdateEliminated: function (eliminated) {
+			PlayerModel.set({eliminated: eliminated});
+		},
+
+		onUpdateKnockout: function(){
+			PlayerModel.trigger('knockout-candidate');
+		},
+
+		onUpdateWinner: function(){
+			PlayerModel.trigger('winner');
+		},
+
 
 		// Events
 		// ------
@@ -85,6 +97,9 @@ define([
 			this.socket.on('players-' + PlayerModel.get('code') + ':lock', this.onGameLocked);
 			this.socket.on('player-' + PlayerModel.id + ':update-points', this.onUpdatePoints);
 			this.socket.on('player-' + PlayerModel.id + ':update-ranking', this.onUpdateRanking);
+			this.socket.on('player-' + PlayerModel.id + ':update-eliminated', this.onUpdateEliminated);
+			this.socket.on('player-' + PlayerModel.id + ':update-knockout', this.onUpdateKnockout);
+			this.socket.on('player-' + PlayerModel.id + ':update-winner', this.onUpdateWinner);
 		},
 
 		onJoinNotFound: function(){
