@@ -6,10 +6,7 @@ var sassLint = require('gulp-sass-lint');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 
-gulp.task('default', function () {
-	console.log('GULP IS WORKING!');
-	return true;
-});
+gulp.task('default', ['sass']);
 
 gulp.task('sass', function () {
 	return gulp.src('dev/sass/**/*.scss')
@@ -31,6 +28,3 @@ gulp.task('val:js', function () {
 		.pipe(jshint())
 		.pipe(jshint.reporter(stylish));
 });
-
-
-gulp.task('build', ['sass']);
