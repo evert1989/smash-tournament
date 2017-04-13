@@ -31,3 +31,6 @@ gulp.task('val:js', function () {
 		.pipe(jshint())
 		.pipe(jshint.reporter(stylish));
 });
+
+
+gulp.task('build', ['sass']);
