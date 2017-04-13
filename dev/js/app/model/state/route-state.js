@@ -21,7 +21,8 @@ define([
 			INTRO: '',
 			LOBBY: '!lobby',
 			ROUND: '!round',
-			KNOCKOUT: '!knockout'
+			KNOCKOUT: '!knockout',
+			WINNER: '!winner'
 		},
 
 

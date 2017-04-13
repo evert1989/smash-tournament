@@ -74,7 +74,7 @@ define([
 			this.$number = this.$('.round-number-js');
 
 			this.createButtons();
-			this.populateRound();
+			this.onChangeActiveRound();
 			this.addListeners();
 		},
 
@@ -119,6 +119,7 @@ define([
 
 			this.roundPlayers.push(player);
 		},
+
 
 		// Helpers
 		// -------

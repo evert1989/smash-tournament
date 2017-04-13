@@ -21,6 +21,7 @@ define([
 			'!lobby': 	 'routeLobby',
 			'!round':	 'routeRound',
 			'!knockout': 'routeKnockout',
+			'!winner':	 'routeWinner'
 		},
 
 		// States
@@ -63,9 +64,12 @@ define([
 		},
 
 		routeKnockout: function(){
-			console.log('route-controller -> routeKnockout');
 			RouteState.set({route: RouteState.ROUTE.KNOCKOUT});
-		}
+		},
+
+		routeWinner: function(){
+			RouteState.set({route: RouteState.ROUTE.WINNER});
+		},
 	});
 
 	return new RouteController();

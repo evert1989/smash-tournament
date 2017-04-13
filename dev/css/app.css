@@ -261,6 +261,31 @@ html {
   margin: 40px 0;
   text-align: center; }
 
+.page__knockout .player-container {
+  display: flex; }
+
+.knockout-player {
+  border: 1px solid #009958;
+  left: 0;
+  margin: 20px auto;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  transform: none;
+  width: 30%; }
+
+.page__winner h1 {
+  font-size: 40px;
+  margin: 40px 0;
+  text-align: center; }
+
+.page__winner p {
+  color: #009958;
+  font-size: 80px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase; }
+
 .overlay {
   bottom: 0;
   left: 0;

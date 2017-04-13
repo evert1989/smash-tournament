@@ -23,6 +23,8 @@ define([
 			knockoutRounds: [],
 			activeKnockout: 0,
 			totalKnockoutPlayers: 4,
+			// winner
+			winner: null,
 		},
 
 

@@ -94,59 +94,56 @@ define([
 
 		// Knockout
 		// --------
-		createKnockout: function(){
+		createKnockout: function () {
 			PlayerCollection.updateEliminatedPlayers();
 			RosterState.set({knockoutPlayers: PlayerCollection.getKnockoutPlayers()});
 
 			this.createKnockoutRounds();
 		},
 
-		createKnockoutRounds: function(){
-			let players = RosterState.get('knockoutPlayers').sort(function(a, b) {
+		createKnockoutRounds: function () {
+			let players = RosterState.get('knockoutPlayers').sort(function (a, b) {
 				return a.get('ranking') - b.get('ranking');
 			});
-
-			players = [
-				new Backbone.Model({ranking: 1}),
-				new Backbone.Model({ranking: 1}),
-				new Backbone.Model({ranking: 1}),
-				new Backbone.Model({ranking: 1}),
-				new Backbone.Model({ranking: 2}),
-				new Backbone.Model({ranking: 3}),
-				new Backbone.Model({ranking: 4}),
-				new Backbone.Model({ranking: 4}),
-				new Backbone.Model({ranking: 4}),
-				new Backbone.Model({ranking: 4})
-			];
 
 			let arrayIndex = 0;
 			let ranking = 1;
 			let nextRanking = 2;
-			let maxRanking = 4;
 			let rounds = [];
 
-			_.each(players, function(player){
-				console.log('roster-controller -> player', player.get('ranking'));
-			});
+			// Finale
+			if (players.length === 2) {
+				RosterState.set({
+					knockoutRounds: [[players[0].get('name'), players[1].get('name')]],
+					activeKnockout: 0
+				});
+				return;
 
-			while(arrayIndex < players.length) {
-				if(players[arrayIndex].get('ranking') === ranking
-					&& (players[arrayIndex].get('ranking') === players[arrayIndex+1].get('ranking')
-					|| players[arrayIndex+1].get('ranking') === nextRanking)
+			// Winner
+			} else if (players.length === 1) {
+				// WINNER
+				RosterState.set({winner: players[0]});
+				return;
+			}
+
+			// Create rounds
+			while (arrayIndex < players.length) {
+				if (players[arrayIndex].get('ranking') === ranking && arrayIndex + 1 < players.length ||
+					(arrayIndex + 1 < players.length &&
+					(players[arrayIndex].get('ranking') === players[arrayIndex + 1].get('ranking') ||
+					players[arrayIndex + 1].get('ranking') === nextRanking))
 				) {
-					rounds.push([players[arrayIndex], players[arrayIndex+1]]);
-
+					rounds.push([players[arrayIndex].get('name'), players[arrayIndex + 1].get('name')]);
 					arrayIndex += 2;
 
-				} else if(players[arrayIndex].get('ranking') === nextRanking){
+				} else if (players[arrayIndex].get('ranking') === nextRanking) {
+					arrayIndex += 1;
 
-					if(nextRanking === maxRanking){
+					if (nextRanking === RosterState.get('totalKnockoutPlayers')) {
 						ranking = nextRanking;
 					}
 
-					arrayIndex += 1;
-
-				} else if(nextRanking < maxRanking) {
+				} else if (nextRanking < RosterState.get('totalKnockoutPlayers')) {
 					ranking += 2;
 					nextRanking += 2;
 
@@ -155,7 +152,7 @@ define([
 				}
 			}
 
-			console.log('roster-controller -> createKnockoutRounds', rounds);
+			RosterState.set({knockoutRounds: rounds, activeKnockout: 0});
 		},
 
 

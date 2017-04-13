@@ -54,6 +54,7 @@ define([
 		},
 
 		isPlayerEliminated: function(playerModel){
+			if(playerModel.get('eliminated')) { return; }
 			playerModel.set({eliminated: playerModel.get('ranking') > 4});
 		},
 

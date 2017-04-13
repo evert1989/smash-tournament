@@ -9,7 +9,8 @@ define([
 	'view/page/intro/intro-page',
 	'view/page/lobby/lobby-page',
 	'view/page/round/round-page',
-	'view/page/knockout/knockout-page'
+	'view/page/knockout/knockout-page',
+	'view/page/winner/winner-page'
 ], function (
 	// Vendors
 	Backbone,
@@ -21,7 +22,8 @@ define([
 	IntroPage,
 	LobbyPage,
 	RoundPage,
-	KnockoutPage
+	KnockoutPage,
+	WinnerPage
 ) {
 
 	'use strict';
@@ -51,7 +53,8 @@ define([
 				new IntroPage({TYPE: AppState.PAGE.INTRO}),
 				new LobbyPage({TYPE: AppState.PAGE.LOBBY}),
 				new RoundPage({TYPE: AppState.PAGE.ROUND}),
-				new KnockoutPage({TYPE: AppState.PAGE.KNOCKOUT})
+				new KnockoutPage({TYPE: AppState.PAGE.KNOCKOUT}),
+				new WinnerPage({TYPE: AppState.PAGE.WINNER})
 			];
 		},
 
@@ -120,6 +123,10 @@ define([
 
 				case RouteState.ROUTE.KNOCKOUT:
 					activePage = AppState.PAGE.KNOCKOUT;
+					break;
+
+				case RouteState.ROUTE.WINNER:
+					activePage = AppState.PAGE.WINNER;
 					break;
 
 				default:
