@@ -19,7 +19,9 @@
     }
 
     &[type=submit] {
+      font-size: 16px;
       left: 0;
+      letter-spacing: 0.1em;
       margin: 40px 0;
       transform: none;
     }

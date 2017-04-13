@@ -25,6 +25,7 @@ define([
 		// Files
 		AUDIO: {
 			INTRO: 			'asset/audio/intro.mp3',
+			LOBBY: 			'asset/audio/lobby.mp3',
 			GAME_READY_GO: 	'asset/audio/announcer/announcer_game_ready_go.mp3',
 			ONE_ON_ONE: 	'asset/audio/announcer/announcer_one_on_one.mp3',
 			FINAL_BATTLE: 	'asset/audio/announcer/announcer_final_battle.mp3',

@@ -12,4 +12,25 @@
     text-align: center;
     text-transform: uppercase;
   }
+
+  -webkit-animation-name: color-switch;
+  -webkit-animation-duration: 200ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes color-switch {
+  0% {
+    background-color: Yellow;
+    opacity:1;
+  }
+  22% {
+    background-color: Yellow;
+  }
+  77% {
+    background-color: Red;
+  }
+  100% {
+    background-color: #777;
+  }
 }

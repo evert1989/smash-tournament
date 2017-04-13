@@ -76,6 +76,8 @@ define([
 			this.$playerContainer = this.$('.player-container');
 
 			this.checkForPinCode();
+
+			AudioController.playSound(AudioController.AUDIO.LOBBY, true);
 		},
 
 		stop: function () {

@@ -51,9 +51,17 @@ define([
 		},
 
 		resetStats: function(){
-			PlayerCollection.set(JSON.parse(sessionStorage.playerCollection));
-			SocketState.set(JSON.parse(sessionStorage.socketState));
-			RosterState.set(JSON.parse(sessionStorage.rosterState));
+			if(sessionStorage.playerCollection){
+				PlayerCollection.set(JSON.parse(sessionStorage.playerCollection));
+			}
+
+			if(sessionStorage.socketState){
+				SocketState.set(JSON.parse(sessionStorage.socketState));
+			}
+
+			if(sessionStorage.rosterState){
+				RosterState.set(JSON.parse(sessionStorage.rosterState));
+			}
 		},
 
 		clearSession: function(){

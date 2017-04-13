@@ -141,6 +141,9 @@ html {
     -webkit-appearance: inherit;
     box-sizing: inherit; }
 
+input {
+  background: #eee; }
+
 .center-container {
   left: 50%;
   position: absolute;
@@ -181,6 +184,7 @@ html {
   width: 90%; }
   .page__intro .center-container .logo-main {
     display: block;
+    margin-bottom: 50px;
     width: 100%; }
   .page__intro .center-container .button {
     margin: 40px 0; }
@@ -199,7 +203,9 @@ html {
     text-transform: uppercase;
     width: 80%; }
   .page__join input[type=submit] {
+    font-size: 16px;
     left: 0;
+    letter-spacing: 0.1em;
     margin: 40px 0;
     transform: none; }
   .page__join .error {

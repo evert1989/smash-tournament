@@ -141,6 +141,9 @@ html {
     -webkit-appearance: inherit;
     box-sizing: inherit; }
 
+input {
+  background: #eee; }
+
 .center-container {
   left: 50%;
   position: absolute;
@@ -182,6 +185,7 @@ html {
 
 .page__intro .logo-main {
   display: block;
+  margin-bottom: 100px;
   width: 100%; }
 
 .page__lobby h1 {
@@ -234,27 +238,32 @@ html {
   text-align: center; }
 
 .page__round .player-container {
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap; }
 
 .round-player {
   border: 1px solid #009958;
-  margin: auto;
+  margin: 20px auto;
   padding: 20px;
-  width: 22%; }
+  width: 45%; }
   .round-player h2,
   .round-player h3 {
-    margin: 20px 0;
+    margin: 30px 0;
     text-align: center;
     text-transform: uppercase;
     width: 100%; }
+  .round-player h3 {
+    font-size: 30px; }
   .round-player input[type=number] {
     border: 1px solid #009958;
+    display: block;
     font-size: 30px;
     height: 50px;
+    margin: 0 auto;
     padding: 10px;
     text-align: center;
     text-transform: uppercase;
-    width: 100%; }
+    width: 50%; }
 
 .page__knockout h1 {
   font-size: 40px;
@@ -266,6 +275,7 @@ html {
 
 .knockout-player {
   border: 1px solid #009958;
+  height: 100px;
   left: 0;
   margin: 20px auto;
   padding: 10px;
@@ -274,17 +284,32 @@ html {
   transform: none;
   width: 30%; }
 
-.page__winner h1 {
-  font-size: 40px;
-  margin: 40px 0;
-  text-align: center; }
+.page__winner {
+  -webkit-animation-name: color-switch;
+  -webkit-animation-duration: 200ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out; }
+  .page__winner h1 {
+    font-size: 40px;
+    margin: 40px 0;
+    text-align: center; }
+  .page__winner p {
+    color: #009958;
+    font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase; }
 
-.page__winner p {
-  color: #009958;
-  font-size: 80px;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase; }
+@-webkit-keyframes color-switch {
+  0% {
+    background-color: Yellow;
+    opacity: 1; }
+  22% {
+    background-color: Yellow; }
+  77% {
+    background-color: Red; }
+  100% {
+    background-color: #777; } }
 
 .overlay {
   bottom: 0;
