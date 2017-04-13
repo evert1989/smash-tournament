@@ -5,6 +5,14 @@
     text-align: center;
   }
 
+  p {
+    color: $green;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 20px 0 0;
+    text-align: center;
+  }
+
   .player-container {
     display: flex;
   }

@@ -192,6 +192,14 @@ input {
   margin: 2em 0;
   text-align: center; }
 
+.page__lobby p {
+  font-weight: bold;
+  font-size: 40px;
+  padding: 30px 0 0;
+  text-align: center; }
+  .page__lobby p .green {
+    color: #009958; }
+
 .page__lobby .code-container {
   border: 1px solid #009958;
   display: flex;
@@ -270,6 +278,13 @@ input {
   margin: 40px 0;
   text-align: center; }
 
+.page__knockout p {
+  color: #009958;
+  font-weight: bold;
+  font-size: 40px;
+  padding: 20px 0 0;
+  text-align: center; }
+
 .page__knockout .player-container {
   display: flex; }
 
@@ -283,6 +298,8 @@ input {
   text-transform: uppercase;
   transform: none;
   width: 30%; }
+  .knockout-player h2 {
+    line-height: 80px; }
 
 .page__winner {
   -webkit-animation-name: color-switch;

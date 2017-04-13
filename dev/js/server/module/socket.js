@@ -39,14 +39,17 @@ module.exports = {
 		onRequest: function (obj) {
 			switch (obj.message) {
 				case 'pin-code':
+					console.log('----> Application: Requesting pin code.');
 					let responseCode = generatePinCode();
 
 					global.activeServers.push({code: responseCode, socket: this});
 
+					console.log('----> Server: Pin code generated (' + responseCode + ').');
 					this.emit('server:response-code', responseCode);
 					break;
 
 				case 'lock-down':
+					console.log('----> Application: Game (' + obj.code +') is locked.');
 					global.io.emit('players-' + obj.code + ':lock');
 					break;
 			}
@@ -89,6 +92,7 @@ module.exports = {
 			let isActiveGame = findWithAttr(global.activeServers, 'code', obj.code);
 
 			if (isActiveGame) {
+				console.log('----> Player: Player (' + obj.name + ') joined game (' + obj.code +').');
 				global.io.emit(obj.id + '-join:success');
 				global.io.emit('application-' + obj.code + ':join', obj);
 
