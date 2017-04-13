@@ -17,5 +17,5 @@ define([
 		}
 	});
 
-	return new SocketState(); // Singleton
+	return new SocketState();
 });

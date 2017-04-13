@@ -28,5 +28,5 @@ define([
 		}
 	});
 
-	return new AppState(); // Singleton
+	return new AppState();
 });

@@ -48,10 +48,15 @@ define([
 		$title: {},
 		$playerContainer: {},
 
+		// States
+		isRefresh: false,
+
 		// Init
 		// ----
 		initialize: function (options) {
 			this._super(options);
+
+			this.isRefresh = !!sessionStorage.rosterState;
 		},
 
 
@@ -67,9 +72,12 @@ define([
 			this.$title = this.$('.title');
 			this.$playerContainer = this.$('.player-container');
 
-			AudioController.playSound(AudioController.AUDIO.ONE_ON_ONE, false);
-			SocketController.updateKnockoutStarted();
-			RosterController.createKnockout();
+			if(!this.isRefresh){
+				AudioController.playSound(AudioController.AUDIO.ONE_ON_ONE, false);
+
+				SocketController.updateKnockoutStarted();
+				RosterController.createKnockout();
+			}
 
 			this.populateKnockout();
 			this.addListeners();

@@ -60,6 +60,9 @@ define([
 		initialize: function () {
 			_.bindAll(this, 'onResponseCode', 'onRequestPlayerData');
 			this.socket = io();
+
+			this.listenTo(SocketState, 'change:pinCode', this.onChangePinCode);
+			this.listenTo(SocketState, 'change:isLocked', this.onChangeIsLocked);
 		},
 
 
@@ -72,18 +75,6 @@ define([
 
 		requestLockPlayers: function () {
 			SocketState.set({isLocked: true});
-
-			// Socket
-			this.socket.off('application-' + SocketState.get('pinCode') + ':join', this.onPlayerJoin);
-			this.socket.on('request:player-data', this.onRequestPlayerData);
-
-			// Application
-			this.listenTo(PlayerCollection, 'change:points', this.updatePlayerPoints);
-			this.listenTo(PlayerCollection, 'change:ranking', this.updatePlayerRanking);
-			this.listenTo(PlayerCollection, 'change:eliminated', this.updatePlayerEliminated);
-			this.listenTo(RosterState, 'change:winner', this.onWinner);
-
-			this.socket.emit(this.MESSAGE.REQUEST, {message: this.REQUEST.LOCK_DOWN, code: SocketState.get('pinCode')});
 		},
 
 
@@ -141,8 +132,6 @@ define([
 		// ---------
 		onResponseCode: function (pinCode) {
 			SocketState.set({pinCode: pinCode});
-
-			this.socket.on('application-' + SocketState.get('pinCode') + ':join', this.onPlayerJoin);
 		},
 
 
@@ -161,6 +150,24 @@ define([
 			if(!targetPlayer) { return ;}
 
 			this.socket.emit('player-found', targetPlayer.toJSON());
+		},
+
+		onChangePinCode: function(){
+			this.socket.on('application-' + SocketState.get('pinCode') + ':join', this.onPlayerJoin);
+		},
+
+		onChangeIsLocked: function(){
+			// Socket
+			this.socket.off('application-' + SocketState.get('pinCode') + ':join', this.onPlayerJoin);
+			this.socket.on('request:player-data', this.onRequestPlayerData);
+
+			// Application
+			this.listenTo(PlayerCollection, 'change:points', this.updatePlayerPoints);
+			this.listenTo(PlayerCollection, 'change:ranking', this.updatePlayerRanking);
+			this.listenTo(PlayerCollection, 'change:eliminated', this.updatePlayerEliminated);
+			this.listenTo(RosterState, 'change:winner', this.onWinner);
+
+			this.socket.emit(this.MESSAGE.REQUEST, {message: this.REQUEST.LOCK_DOWN, code: SocketState.get('pinCode')});
 		},
 	});
 

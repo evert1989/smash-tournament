@@ -2,15 +2,16 @@ define([
 	// Vendors
 	'underscore',
 	// Collection
-	'collection/player-collection', // Singleton
+	'collection/player-collection', 	// Singleton
 	// Controllers
-	'controller/route-controller', 	// Singleton
-	'controller/roster-controller', // Singleton
+	'controller/route-controller', 		// Singleton
+	'controller/roster-controller', 	// Singleton
+	'controller/session-controller', 	// Singleton
 	// Component
 	'component/button',
 	// Models
-	'model/state/route-state', 		// Singleton
-	'model/state/roster-state', 	// Singleton
+	'model/state/route-state', 			// Singleton
+	'model/state/roster-state', 		// Singleton
 	// Views
 	'view/base/page-view',
 	'view/page/round/round-player',
@@ -24,6 +25,7 @@ define([
 	// Controllers
 	RouteController,
 	RosterController,
+	SessionController,
 	// Component
 	Button,
 	// Models

@@ -1,9 +1,10 @@
 define([
 	// Models
-	'model/state/app-state', 		// Singleton
+	'model/state/app-state', 			// Singleton
 	// Controllers
 	'controller/view-controller',
-	'controller/route-controller', 	// Singleton
+	'controller/route-controller', 		// Singleton
+	'controller/session-controller', 	// Singleton
 	// Views
 	'view/base/base-view',
 	'view/overlay/loader-overlay'
@@ -13,6 +14,7 @@ define([
 	// Controllers
 	ViewController,
 	RouteController,
+	SessionController,
 	// Views
 	BaseView,
 	LoaderOverlay
@@ -48,6 +50,8 @@ define([
 
 			// Create overlays
 			this.loaderOverlay = new LoaderOverlay();
+
+			SessionController.checkIfRefresh();
 		},
 
 

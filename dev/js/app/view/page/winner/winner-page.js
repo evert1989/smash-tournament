@@ -1,8 +1,9 @@
 define([
 	// Controller
-	'controller/audio-controller',	// Singleton
+	'controller/audio-controller',		// Singleton
+	'controller/session-controller', 	// Singleton
 	// Models
-	'model/state/roster-state',		// Singleton
+	'model/state/roster-state',			// Singleton
 	// Views
 	'view/base/page-view',
 	// Templates
@@ -10,6 +11,7 @@ define([
 ], function (
 	// Controller
 	AudioController,
+	SessionController,
 	// Models
 	RosterState,
 	// Views
@@ -42,6 +44,7 @@ define([
 			}
 
 			AudioController.playSound(AudioController.AUDIO.THE_WINNER_IS, false);
+			SessionController.clearSession();
 		},
 
 		stop: function () {

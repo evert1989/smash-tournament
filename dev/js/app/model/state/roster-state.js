@@ -32,5 +32,5 @@ define([
 		}
 	});
 
-	return new RosterState(); // Singleton
+	return new RosterState();
 });

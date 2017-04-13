@@ -47,10 +47,15 @@ define([
 			this.calculateRounds(playerNames);
 
 			// Create rounds
+			let rounds = RosterState.get('rounds').concat();
+			let round;
+
 			for (let i = 0; i < RosterState.get('totalRounds'); i += 1) {
-				let round = this.createSingleRound(playerNames);
-				RosterState.get('rounds').push(round);
+				round = this.createSingleRound(playerNames);
+				rounds.push(round);
 			}
+
+			RosterState.set({rounds: rounds});
 		},
 
 		/**

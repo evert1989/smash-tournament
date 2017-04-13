@@ -27,5 +27,5 @@ define([
 		}
 	});
 
-	return new RouteState(); // Singleton
+	return new RouteState();
 });
