@@ -32,4 +32,3 @@ $RECYCLE.BIN/
 npm-debug.log
 node_modules
 dev/js/vendor
-dev/asset
