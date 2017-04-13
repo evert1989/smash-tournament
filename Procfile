@@ -1,1 +1,1 @@
-web: "node dev/js/server/index.js"
+web: node ./dev/js/server/index.js
